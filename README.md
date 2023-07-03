@@ -5,27 +5,22 @@
   - This application is a personal project to create a POS system for a brunch restaurant.
 
 
-  - This application consists of three parts.
-   - Order
+  - This application consists of four parts.
+    - Order
         - It makes an order.
-   - Pay
+    - Pay
         - It pays the order.
-   - Manage Menu
+    - Manage Menu
         - It adds an item to a menu, or remove one from a menu.
-   - Records
+    - Records
         - It shows orders that are completed.
         
  
-  - How the application flows.
-    1. The user makes an order of items, as many as s/he wants.
-      2. The user can check the ongoing order.
-      3. The user pays for the ongoing order, or cancel it.
-      4. The user can see the order history to check the if the order has been completed properly.
-
-
-  - Additional notes
-    - The user can add items to the menu.
-    - The user can remove items from the menu.
+### How the application flows.
+1. The user makes an order of items, as many as s/he wants.
+2. The user can check the ongoing order.
+3. The user pays for the ongoing order, or cancel it.
+4. The user can see the order history to check the if the order has been completed properly.
 
 ### Who will use it?
   - People who want to manage orders at restaurants
