@@ -24,4 +24,8 @@ public class Item {
     public void setPrice(double itemPrice) {
         price = itemPrice;
     }
+
+    public String toString() {
+        return this.getName() + " / " + this.getPrice();
+    }
 }

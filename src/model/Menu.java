@@ -1,23 +1,18 @@
 package model;
 
-import java.util.ArrayList;
+public class Menu extends Items{
+    private String name;
 
-public class Menu {
-    private ArrayList<Item> items;
-
-    public Menu() {
-        items = new ArrayList<>();
+    public Menu(String menuName) {
+        super();
+        name = menuName;
     }
 
-    public void addItem(Item item) {
-        items.add(item);
+    public String getName() {
+        return name;
     }
 
-    public void removeItem(Item item) {
-        items.remove(item);
-    }
-
-    public int numItem() {
-        return items.size();
+    public void setName(String newName) {
+        name = newName;
     }
 }
