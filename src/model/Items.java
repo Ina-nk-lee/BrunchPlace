@@ -27,9 +27,12 @@ public class Items {
         for (Item it : items) {
             result.append(it.toString()).append("\n");
         }
+
+        //  removes a new line at the end.
         if(result.length() > 0) {
             result.setLength(result.length() - 1);
         }
+
         return result.toString();
     }
 }

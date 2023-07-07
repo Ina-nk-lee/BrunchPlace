@@ -17,7 +17,14 @@ public class Orders {
         orders.remove(order);
     }
 
-    public void printOrders() {
-
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (Order it : orders) {
+            result.append(it.toString()).append("\n\n");
+        }
+        if (result.length() > 0) {
+            result.setLength(result.length() - 2);
+        }
+        return result.toString();
     }
 }
