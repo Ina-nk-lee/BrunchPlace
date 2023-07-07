@@ -1,4 +1,4 @@
-package model;
+package model.item;
 
 public class Entree extends Item {
 

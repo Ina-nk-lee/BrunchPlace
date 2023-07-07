@@ -1,4 +1,6 @@
-package model;
+package model.itemGroup;
+
+import model.item.Item;
 
 import java.util.ArrayList;
 
@@ -21,9 +23,10 @@ public class Items {
         return items.size();
     }
 
-    //  Converts Menu to String by placing each item on a new line.
-    public String toString() {
+    //  Converts Items to String starting with a headline and by placing each item on a new line.
+    public String toString(String headline) {
         StringBuilder result = new StringBuilder();
+        result.append("<" + headline + ">").append("\n");
         for (Item it : items) {
             result.append(it.toString()).append("\n");
         }

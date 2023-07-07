@@ -1,4 +1,6 @@
-package model;
+package model.itemGroup;
+
+import model.item.Item;
 
 import java.time.LocalDate;
 
