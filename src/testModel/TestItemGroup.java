@@ -7,6 +7,8 @@ import model.itemGroup.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestItemGroup {
@@ -85,5 +87,17 @@ class TestItemGroup {
     void testSetName() {
         testMenu.setName("NewMenu");
         assertEquals("NewMenu", testMenu.getName());
+    }
+
+    @Test
+    void testOrderGetSetDate() {
+        testOrder.setDate(LocalDate.now());
+        assertEquals(LocalDate.now(), testOrder.getDate());
+    }
+
+    @Test
+    void testOrderGetSetTable() {
+        testOrder.setTable(1);
+        assertEquals(1, testOrder.getTable());
     }
 }
