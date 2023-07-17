@@ -15,5 +15,4 @@ public class Menu extends Items{
     public void setName(String newName) {
         name = newName;
     }
-
 }

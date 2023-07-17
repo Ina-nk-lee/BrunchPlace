@@ -3,9 +3,10 @@ package model.itemGroup;
 import model.item.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Items {
-    private ArrayList<Item> items;
+    protected List<Item> items;
 
     public Items() {
         items = new ArrayList<>();

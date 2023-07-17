@@ -100,4 +100,34 @@ class TestItemGroup {
         testOrder.setTable(1);
         assertEquals(1, testOrder.getTable());
     }
+
+    @Test
+    void testOrderGetTotal() {
+        assertEquals(0, testOrder.getTotal());
+    }
+
+    @Test
+    void testOrderGetQuantity() {
+        assertEquals(0, testOrder.getQuantity(itemA));
+    }
+
+    @Test
+    void testToString() {
+        assertEquals("<" + LocalDate.now() + " / Table No: 0>" +
+                "\nTotal 0 items." +
+                "\nTotal: 0.0",
+                testOrder.toString());
+
+        testOrder.setTable(1);
+        testOrder.addItem(itemA);
+        testOrder.addItem(itemA);
+        testOrder.addItem(itemB);
+        assertEquals("<" + LocalDate.now() + " / Table No: 1>" +
+                "\nB / 3.78 / 1" +
+                "\nA / 10.0 / 2" +
+                "\nTotal 3 items." +
+                "\nTotal: 23.78",
+                testOrder.toString());
+
+    }
 }
