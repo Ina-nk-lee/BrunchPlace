@@ -27,7 +27,7 @@ public class Items {
     //  Converts Items to String starting with a headline and by placing each item on a new line.
     public String toString(String headline) {
         StringBuilder result = new StringBuilder();
-        result.append("<" + headline + ">").append("\n");
+        result.append("<").append(headline).append(">").append("\n");
         for (Item it : items) {
             result.append(it.toString()).append("\n");
         }
