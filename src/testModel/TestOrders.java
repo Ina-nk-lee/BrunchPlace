@@ -1,8 +1,8 @@
 package testModel;
 
-import model.itemGroup.Orders;
-import model.item.Item;
-import model.itemGroup.Order;
+import model.collection.Orders;
+import model.single.Item;
+import model.group.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

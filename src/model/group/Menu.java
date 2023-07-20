@@ -1,4 +1,4 @@
-package model.itemGroup;
+package model.group;
 
 public class Menu extends Items{
     private String name;
@@ -14,5 +14,9 @@ public class Menu extends Items{
 
     public void setName(String newName) {
         name = newName;
+    }
+
+    public String toString() {
+        return super.toString(name);
     }
 }

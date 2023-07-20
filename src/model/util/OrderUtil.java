@@ -1,7 +1,7 @@
 package model.util;
 
-import model.itemGroup.Menu;
-import model.itemGroup.Order;
+import model.group.Menu;
+import model.group.Order;
 import java.util.Scanner;
 
 public class OrderUtil extends Util {
@@ -43,7 +43,7 @@ public class OrderUtil extends Util {
     }
 
     public void addItem() {
-
+        System.out.println(menu.toString());
     }
 
     public void removeItem() {

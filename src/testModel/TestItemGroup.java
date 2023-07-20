@@ -1,9 +1,9 @@
 package testModel;
 
-import model.item.Item;
-import model.itemGroup.Items;
-import model.itemGroup.Menu;
-import model.itemGroup.Order;
+import model.single.Item;
+import model.group.Items;
+import model.group.Menu;
+import model.group.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

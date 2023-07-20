@@ -1,27 +1,29 @@
-package model.itemGroup;
+package model.collection;
+
+import model.group.Items;
 
 import java.util.ArrayList;
 
-public class Orders {
-    private ArrayList<Order> orders;
+public class Groups {
+    private ArrayList<Items> itemGroups;
 
-    public Orders() {
-        orders = new ArrayList<>();
+    public Groups() {
+        itemGroups = new ArrayList<>();
     }
 
-    public void addOrder(Order order) {
-        orders.add(order);
+    public void addGroup(Items group) {
+        itemGroups.add(group);
     }
 
-    public void removeOrder(Order order) {
-        orders.remove(order);
+    public void removeGroup(Items group) {
+        itemGroups.remove(group);
     }
 
     public String toString() {
         StringBuilder result = new StringBuilder();
 
         //  converts each order into string in a new line
-        for (Order it : orders) {
+        for (Items it : itemGroups) {
             result.append(it.toString()).append("\n\n");
         }
 

@@ -1,9 +1,9 @@
 package testModel;
 
-import model.item.App;
-import model.item.Drink;
-import model.item.Entree;
-import model.item.Item;
+import model.single.App;
+import model.single.Drink;
+import model.single.Entree;
+import model.single.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
-package model.itemGroup;
+package model.group;
 
-import model.item.Item;
+import model.single.Item;
 
 import java.time.LocalDate;
 import java.util.HashMap;
