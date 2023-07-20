@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestItem {
+class TestSingle {
     Item testItem;
     Entree testEntree;
     App testApp;

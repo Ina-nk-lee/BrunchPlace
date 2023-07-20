@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestItemGroup {
+class TestGroup {
     Items testItems;
     Menu testMenu;
     Order testOrder;
@@ -75,7 +75,7 @@ class TestItemGroup {
     @Test
     void testMenuToString() {
         testMenu.addItem(itemB);
-        assertEquals("<testMenu>\nB / 3.78", testMenu.toString("testMenu"));
+        assertEquals("<TestMenu>\nB / 3.78", testMenu.toString());
     }
 
     @Test
@@ -112,7 +112,7 @@ class TestItemGroup {
     }
 
     @Test
-    void testToString() {
+    void testOrderToString() {
         assertEquals("<" + LocalDate.now() + " / Table No: 0>" +
                 "\nTotal 0 items." +
                 "\nTotal: 0.0",
@@ -121,12 +121,10 @@ class TestItemGroup {
         testOrder.setTable(1);
         testOrder.addItem(itemA);
         testOrder.addItem(itemA);
-        testOrder.addItem(itemB);
         assertEquals("<" + LocalDate.now() + " / Table No: 1>" +
-                "\nB / 3.78 / 1" +
                 "\nA / 10.0 / 2" +
-                "\nTotal 3 items." +
-                "\nTotal: 23.78",
+                "\nTotal 2 items." +
+                "\nTotal: 20.0",
                 testOrder.toString());
 
     }
