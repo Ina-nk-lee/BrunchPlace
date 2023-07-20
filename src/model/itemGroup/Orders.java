@@ -1,6 +1,4 @@
-package model;
-
-import model.itemGroup.Order;
+package model.itemGroup;
 
 import java.util.ArrayList;
 

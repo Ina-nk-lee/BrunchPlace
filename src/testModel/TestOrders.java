@@ -1,6 +1,6 @@
 package testModel;
 
-import model.Orders;
+import model.itemGroup.Orders;
 import model.item.Item;
 import model.itemGroup.Order;
 import org.junit.jupiter.api.BeforeEach;
