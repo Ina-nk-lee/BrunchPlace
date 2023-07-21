@@ -1,6 +1,6 @@
 package model.group;
 
-public class Menu extends Items{
+public class Menu extends Group {
     private String name;
 
     public Menu(String menuName) {

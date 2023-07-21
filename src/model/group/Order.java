@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Order extends Items{
+public class Order extends Group {
     private LocalDate date;
     private double total;
     private int table;

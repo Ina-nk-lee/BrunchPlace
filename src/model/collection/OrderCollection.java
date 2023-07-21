@@ -2,8 +2,8 @@ package model.collection;
 
 import model.group.Order;
 
-public class Orders extends Groups{
-    public Orders() {
+public class OrderCollection extends Collection {
+    public OrderCollection() {
         super();
     }
 

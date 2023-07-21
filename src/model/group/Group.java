@@ -5,10 +5,10 @@ import model.single.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Items {
+public class Group {
     protected List<Item> items;
 
-    public Items() {
+    public Group() {
         items = new ArrayList<>();
     }
 

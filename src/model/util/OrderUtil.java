@@ -1,17 +1,17 @@
 package model.util;
 
-import model.group.Menu;
+import model.collection.MenuCollection;
 import model.group.Order;
 import java.util.Scanner;
 
 public class OrderUtil extends Util {
     Scanner intScan;
     Scanner StrScan;
-    Menu menu;
+    MenuCollection menuCollection;
     Order order;
 
-    public OrderUtil(Menu newMenu, Order newOrder) {
-        menu = newMenu;
+    public OrderUtil(MenuCollection newMenu, Order newOrder) {
+        menuCollection = newMenu;
         order = newOrder;
 
         this.showOptions();
@@ -43,10 +43,14 @@ public class OrderUtil extends Util {
     }
 
     public void addItem() {
-        System.out.println(menu.toString());
+        this.printMenu();
     }
 
     public void removeItem() {
+
+    }
+
+    public void printMenu() {
 
     }
 

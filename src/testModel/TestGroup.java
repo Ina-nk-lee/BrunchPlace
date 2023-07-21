@@ -1,7 +1,7 @@
 package testModel;
 
 import model.single.Item;
-import model.group.Items;
+import model.group.Group;
 import model.group.Menu;
 import model.group.Order;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestGroup {
-    Items testItems;
+    Group testGroup;
     Menu testMenu;
     Order testOrder;
     Item itemA;
@@ -20,7 +20,7 @@ class TestGroup {
 
     @BeforeEach
     void runBefore() {
-        testItems = new Items();
+        testGroup = new Group();
         testMenu = new Menu("TestMenu");
         testOrder = new Order(0);
 
@@ -30,46 +30,46 @@ class TestGroup {
 
     @Test
     void testAddItem() {
-        assertEquals(0, testItems.numItem());
+        assertEquals(0, testGroup.numItem());
         assertEquals(0, testMenu.numItem());
         assertEquals(0, testOrder.numItem());
 
-        testItems.addItem(itemA);
+        testGroup.addItem(itemA);
         testMenu.addItem(itemA);
         testOrder.addItem(itemA);
 
-        assertEquals(1, testItems.numItem());
+        assertEquals(1, testGroup.numItem());
         assertEquals(1, testMenu.numItem());
         assertEquals(1, testOrder.numItem());
     }
 
     @Test
     void testRemoveItem() {
-        assertEquals(0, testItems.numItem());
+        assertEquals(0, testGroup.numItem());
         assertEquals(0, testMenu.numItem());
         assertEquals(0, testOrder.numItem());
 
-        testItems.addItem(itemA);
+        testGroup.addItem(itemA);
         testMenu.addItem(itemA);
         testOrder.addItem(itemA);
 
-        testItems.addItem(itemB);
+        testGroup.addItem(itemB);
         testMenu.addItem(itemB);
         testOrder.addItem(itemB);
 
-        testItems.removeItem(itemA);
+        testGroup.removeItem(itemA);
         testMenu.removeItem(itemA);
         testOrder.removeItem(itemA);
 
-        assertEquals(1, testItems.numItem());
+        assertEquals(1, testGroup.numItem());
         assertEquals(1, testMenu.numItem());
         assertEquals(1, testOrder.numItem());
     }
 
     @Test
     void testItemToString() {
-        testItems.addItem(itemA);
-        assertEquals("<testItem>\nA / 10.0", testItems.toString("testItem"));
+        testGroup.addItem(itemA);
+        assertEquals("<testItem>\nA / 10.0", testGroup.toString("testItem"));
     }
 
     @Test

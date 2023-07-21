@@ -1,7 +1,7 @@
 package testModel;
 
-import model.collection.Menus;
-import model.collection.Orders;
+import model.collection.MenuCollection;
+import model.collection.OrderCollection;
 import model.group.Menu;
 import model.group.Order;
 import model.single.Item;
@@ -11,8 +11,8 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCollection {
-    Orders testOrders;
-    Menus testMenus;
+    OrderCollection testOrderCollection;
+    MenuCollection testMenuCollection;
     Order orderA;
     Order orderB;
     Menu menuA;
@@ -27,13 +27,13 @@ public class TestCollection {
 
         orderA = new Order(0);
         orderB = new Order(1);
-        testOrders = new Orders();
+        testOrderCollection = new OrderCollection();
 
         menuA = new Menu("Menu A");
         menuB = new Menu("Menu B");
 
-        testOrders = new Orders();
-        testMenus = new Menus();
+        testOrderCollection = new OrderCollection();
+        testMenuCollection = new MenuCollection();
 
         orderA.addItem(itemA);
         orderB.addItem(itemB);
@@ -44,8 +44,8 @@ public class TestCollection {
 
     @Test
     void testAddOrderWithToString() {
-        testOrders.addOrder(orderA);
-        testOrders.addOrder(orderB);
+        testOrderCollection.addOrder(orderA);
+        testOrderCollection.addOrder(orderB);
 
         assertEquals("<" + LocalDate.now() + " / Table No: 0>" +
                         "\nA / 10.0 / 1" +
@@ -55,41 +55,41 @@ public class TestCollection {
                         "\nB / 3.78 / 1" +
                         "\nTotal 1 items." +
                         "\nTotal: 3.78",
-                testOrders.toString());
+                testOrderCollection.toString());
     }
 
     @Test
     void testAddMenuWithToString() {
-        testMenus.addMenu(menuA);
-        testMenus.addMenu(menuB);
+        testMenuCollection.addMenu(menuA);
+        testMenuCollection.addMenu(menuB);
 
         assertEquals("<Menu A>" +
                 "\nA / 10.0" +
                 "\n" +
                 "\n<Menu B>" +
                 "\nB / 3.78",
-                testMenus.toString());
+                testMenuCollection.toString());
     }
 
     @Test
     void testRemoveOrderWithToString() {
-        testOrders.addOrder(orderA);
-        testOrders.addOrder(orderB);
+        testOrderCollection.addOrder(orderA);
+        testOrderCollection.addOrder(orderB);
 
-        testOrders.removeOrder(orderA);
-        testOrders.removeOrder(orderB);
+        testOrderCollection.removeOrder(orderA);
+        testOrderCollection.removeOrder(orderB);
 
-        assertEquals("", testOrders.toString());
+        assertEquals("", testOrderCollection.toString());
     }
 
     @Test
     void testRemoveMenuWithToString() {
-        testMenus.addMenu(menuA);
-        testMenus.addMenu(menuB);
+        testMenuCollection.addMenu(menuA);
+        testMenuCollection.addMenu(menuB);
 
-        testMenus.removeMenu(menuA);
-        testMenus.removeMenu(menuB);
+        testMenuCollection.removeMenu(menuA);
+        testMenuCollection.removeMenu(menuB);
 
-        assertEquals("", testMenus.toString());
+        assertEquals("", testMenuCollection.toString());
     }
 }
