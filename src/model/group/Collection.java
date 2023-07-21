@@ -1,11 +1,10 @@
-package model.collection;
-
-import model.group.Group;
+package model.group;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Collection {
-    protected ArrayList<Group> itemGroups;
+    protected List<Group> itemGroups;
 
     public Collection() {
         itemGroups = new ArrayList<>();
@@ -19,7 +18,7 @@ public class Collection {
         itemGroups.remove(group);
     }
 
-    protected ArrayList<Group> getMenuList() {
+    protected List<Group> getMenuList() {
         return itemGroups;
     }
 

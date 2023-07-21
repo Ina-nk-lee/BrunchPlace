@@ -24,6 +24,10 @@ public class Group {
         return items.size();
     }
 
+    protected List<Item> getItems() {
+        return items;
+    }
+
     //  Converts Items to String starting with a headline and by placing each item on a new line.
     public String toString(String headline) {
         StringBuilder result = new StringBuilder();

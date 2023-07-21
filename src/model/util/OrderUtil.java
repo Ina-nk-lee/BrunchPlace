@@ -1,6 +1,6 @@
 package model.util;
 
-import model.collection.MenuCollection;
+import model.group.MenuCollection;
 import model.group.Order;
 import java.util.Scanner;
 

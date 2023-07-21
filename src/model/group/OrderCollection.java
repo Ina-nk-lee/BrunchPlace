@@ -1,6 +1,4 @@
-package model.collection;
-
-import model.group.Order;
+package model.group;
 
 public class OrderCollection extends Collection {
     public OrderCollection() {

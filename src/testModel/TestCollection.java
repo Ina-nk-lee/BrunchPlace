@@ -1,7 +1,7 @@
 package testModel;
 
-import model.collection.MenuCollection;
-import model.collection.OrderCollection;
+import model.group.MenuCollection;
+import model.group.OrderCollection;
 import model.group.Menu;
 import model.group.Order;
 import model.single.Item;
@@ -64,10 +64,9 @@ public class TestCollection {
         testMenuCollection.addMenu(menuB);
 
         assertEquals("<Menu A>" +
-                "\nA / 10.0" +
-                "\n" +
+                "\n1. A / 10.0" +
                 "\n<Menu B>" +
-                "\nB / 3.78",
+                "\n2. B / 3.78",
                 testMenuCollection.toString());
     }
 
