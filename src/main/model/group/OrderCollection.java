@@ -12,4 +12,8 @@ public class OrderCollection extends Collection {
     public void removeOrder(Order order) {
         super.removeGroup(order);
     }
+
+    public int numOrders() {
+        return super.numItems();
+    }
 }

@@ -22,6 +22,10 @@ public class Collection {
         return itemGroups;
     }
 
+    public int numItems() {
+        return itemGroups.size();
+    }
+
     public String toString() {
         StringBuilder result = new StringBuilder();
 

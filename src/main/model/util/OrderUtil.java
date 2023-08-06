@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class OrderUtil extends Util {
     private static List<Menu> menus;
-    private static OrderCollection orders;
+    private static OrderCollection orderRecords;
     private static Order order;
 
     /**
@@ -20,7 +20,7 @@ public class OrderUtil extends Util {
      * @param newMenus where orders are going to be based on.
      */
     public OrderUtil(List<Menu> newMenus) {
-        orders = new OrderCollection();
+        orderRecords = new OrderCollection();
         menus = newMenus;
     }
 
@@ -47,16 +47,37 @@ public class OrderUtil extends Util {
         }
     }
 
-    public void removeItem() {
-
+    /**
+     * Removes an item to a current order.
+     * Does nothing if there is no such item in the menu.
+     * @param itemName is the name of the item to remove.
+     */
+    public void removeItem(String itemName) {
+        Item newItem = null;
+        for(Menu menu : menus) {
+            newItem = menu.getItem(itemName);
+            if(newItem != null) {
+                order.removeItem(newItem);
+            }
+        }
     }
 
-    public void printMenu() {
-
-    }
-
+    /**
+     * Makes an order by moving the current order to order records.
+     */
     public void makeOrder() {
+        if(order.numItem() != 0) {
+            orderRecords.addOrder(order);
+            order = null;
+        }
+    }
 
+    /**
+     * Checks if OrderUtil is empty.
+     * @return true if OrderUtil does NOT have an order, false if it has an ongoing one.
+     */
+    public boolean isEmpty() {
+        return order == null;
     }
 
     /**
@@ -65,5 +86,13 @@ public class OrderUtil extends Util {
      */
     public Order getOrder() {
         return order;
+    }
+
+    /**
+     * A getter for order records.
+     * @return order records.
+     */
+    public OrderCollection getOrderRecords() {
+        return orderRecords;
     }
 }

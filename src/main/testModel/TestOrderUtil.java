@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestOrderUtil {
     Menu testMenu;
@@ -44,5 +44,24 @@ public class TestOrderUtil {
         testOrderUtil.addItem("a");
         assertEquals(2, testMenu.numItem());
         assertEquals(10, testOrderUtil.getOrder().getTotal());
+    }
+
+    @Test
+    void testRemoveItem() {
+        testOrderUtil.addItem("a");
+        assertEquals(10, testOrderUtil.getOrder().getTotal());
+
+        testOrderUtil.removeItem("a");
+        assertEquals(0, testOrderUtil.getOrder().getTotal());
+    }
+
+    @Test
+    void testMakeOrder() {
+        testOrderUtil.addItem("a");
+        testOrderUtil.makeOrder();
+
+        assertNull(testOrderUtil.getOrder());
+        assertEquals(1, testOrderUtil.getOrderRecords().numItems());
+        assertTrue(testOrderUtil.isEmpty());
     }
 }
