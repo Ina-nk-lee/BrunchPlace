@@ -1,4 +1,4 @@
-package model.single;
+package main.model.single;
 
 public class App extends Item {
 

@@ -1,4 +1,4 @@
-package model.group;
+package main.model.group;
 
 public class OrderCollection extends Collection {
     public OrderCollection() {

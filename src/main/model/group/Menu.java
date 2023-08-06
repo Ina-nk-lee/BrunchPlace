@@ -1,4 +1,6 @@
-package model.group;
+package main.model.group;
+
+import main.model.single.Item;
 
 /**
  * This class represents a menu of items.
@@ -13,6 +15,20 @@ public class Menu extends Group {
     public Menu(String menuName) {
         super();
         name = menuName;
+    }
+
+    /**
+     * Gets an item with a given name.
+     * @param itemName is the name of the item to get.
+     * @return the item with the given name. null if there is none.
+     */
+    public Item getItem(String itemName) {
+        for(Item i : super.getItems()) {
+            if(i.getName().equalsIgnoreCase(itemName)) {
+                return i;
+            }
+        }
+        return null;
     }
 
     /**

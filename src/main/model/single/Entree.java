@@ -1,4 +1,4 @@
-package model.single;
+package main.model.single;
 
 public class Entree extends Item {
 

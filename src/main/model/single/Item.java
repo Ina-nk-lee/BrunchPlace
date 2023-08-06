@@ -1,4 +1,4 @@
-package model.single;
+package main.model.single;
 
 /**
  * This class represents an item with a name and a price.

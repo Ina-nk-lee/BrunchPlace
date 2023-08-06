@@ -1,10 +1,10 @@
-package testModel;
+package main.testModel;
 
-import model.group.MenuCollection;
-import model.group.OrderCollection;
-import model.group.Menu;
-import model.group.Order;
-import model.single.Item;
+import main.model.group.MenuCollection;
+import main.model.group.OrderCollection;
+import main.model.group.Menu;
+import main.model.group.Order;
+import main.model.single.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;

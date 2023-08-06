@@ -1,6 +1,6 @@
-package model.group;
+package main.model.group;
 
-import model.single.Item;
+import main.model.single.Item;
 
 import java.util.List;
 

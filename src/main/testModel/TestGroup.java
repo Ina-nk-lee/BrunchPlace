@@ -1,9 +1,9 @@
-package testModel;
+package main.testModel;
 
-import model.single.Item;
-import model.group.Group;
-import model.group.Menu;
-import model.group.Order;
+import main.model.single.Item;
+import main.model.group.Group;
+import main.model.group.Menu;
+import main.model.group.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -127,5 +127,11 @@ class TestGroup {
                 "\nTotal: 20.0",
                 testOrder.toString());
 
+    }
+
+    @Test
+    void testGetItem() {
+        testMenu.addItem(itemA);
+        assertEquals("A", testMenu.getItem("A").getName());
     }
 }

@@ -1,4 +1,4 @@
-package model.group;
+package main.model.group;
 
 import java.util.ArrayList;
 import java.util.List;
