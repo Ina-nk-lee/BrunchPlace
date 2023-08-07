@@ -32,7 +32,7 @@ public class Collection {
 
         //  converts each order into string in a new line
         for (Group it : itemGroups) {
-            result.append(i).append(". ").append(it.toString()).append("\n\n");
+            result.append(i++).append(". ").append(it.toString()).append("\n\n");
         }
 
         //  removes a new line at the end of String

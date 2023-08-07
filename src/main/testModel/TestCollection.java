@@ -47,11 +47,11 @@ public class TestCollection {
         testOrderRecords.addOrder(orderA);
         testOrderRecords.addOrder(orderB);
 
-        assertEquals("<" + LocalDate.now() + " / Table No: 0>" +
+        assertEquals("1. <" + LocalDate.now() + " / Table No: 0>" +
                         "\nA / 10.0 / 1" +
                         "\nTotal 1 items." +
                         "\nTotal: 10.0" +
-                        "\n\n<" + LocalDate.now() + " / Table No: 1>" +
+                        "\n\n2. <" + LocalDate.now() + " / Table No: 1>" +
                         "\nB / 3.78 / 1" +
                         "\nTotal 1 items." +
                         "\nTotal: 3.78",
