@@ -11,6 +11,8 @@ public class Order extends Group {
     private double total;
     private int table;
     private int numItems;
+    private boolean isOrdered;
+    private boolean isPaid;
     private Map<Item, Integer> orderList;
 
     //  Creates an Order with an ArrayList, a local date, total = 0, and a given table number.
@@ -21,6 +23,8 @@ public class Order extends Group {
         total = 0;
         table = tableNo;
         numItems = 0;
+        isOrdered = false;
+        isPaid = false;
         orderList = new HashMap<>();
     }
 
@@ -58,9 +62,37 @@ public class Order extends Group {
         table = tableNo;
     }
 
+    public boolean isOrdered() {
+        return isOrdered;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setOrdered() {
+        isOrdered = true;
+    }
+
+    public void setPaid() {
+        isPaid = true;
+    }
+
     public int getQuantity(Item item) {
         this.updateOrderList();
         return orderList.getOrDefault(item, 0);
+    }
+
+    //  Updates OrderList according to the items(ArrayList) to calculate the quantity of each item.
+    private void updateOrderList() {
+        for(Item it : super.items) {
+            if(orderList.containsKey(it)) {
+                orderList.put(it, orderList.get(it) + 1);
+            } else {
+                orderList.put(it, 1);
+            }
+            numItems++;
+        }
     }
 
     public String toString() {
@@ -86,17 +118,5 @@ public class Order extends Group {
         result.append("\nTotal ").append(numItems).append(" items.\nTotal: ").append(total);
 
         return result.toString();
-    }
-
-    //  Updates OrderList according to the items(ArrayList) to calculate the quantity of each item.
-    private void updateOrderList() {
-        for(Item it : super.items) {
-            if(orderList.containsKey(it)) {
-                orderList.put(it, orderList.get(it) + 1);
-            } else {
-                orderList.put(it, 1);
-            }
-            numItems++;
-        }
     }
 }

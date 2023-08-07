@@ -1,7 +1,10 @@
 package main.model.group;
 
-public class OrderCollection extends Collection {
-    public OrderCollection() {
+/**
+ * This class represents order records.
+ */
+public class OrderRecords extends Collection {
+    public OrderRecords() {
         super();
     }
 

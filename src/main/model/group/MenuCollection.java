@@ -33,7 +33,7 @@ public class MenuCollection extends Collection {
     //  Converts Menus to String with a shared numbering
     public String toString() {
         StringBuilder result = new StringBuilder();
-        List<Group> menuList = super.getMenuList();
+        List<Group> menuList = super.getList();
         int numbering = 1;
 
         //  Retrieve each Menu

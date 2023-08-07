@@ -18,7 +18,7 @@ public class Collection {
         itemGroups.remove(group);
     }
 
-    protected List<Group> getMenuList() {
+    public List<Group> getList() {
         return itemGroups;
     }
 
@@ -28,10 +28,11 @@ public class Collection {
 
     public String toString() {
         StringBuilder result = new StringBuilder();
+        int i = 1;
 
         //  converts each order into string in a new line
         for (Group it : itemGroups) {
-            result.append(it.toString()).append("\n\n");
+            result.append(i).append(". ").append(it.toString()).append("\n\n");
         }
 
         //  removes a new line at the end of String

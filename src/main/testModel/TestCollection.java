@@ -1,7 +1,7 @@
 package main.testModel;
 
 import main.model.group.MenuCollection;
-import main.model.group.OrderCollection;
+import main.model.group.OrderRecords;
 import main.model.group.Menu;
 import main.model.group.Order;
 import main.model.single.Item;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCollection {
-    OrderCollection testOrderCollection;
+    OrderRecords testOrderRecords;
     MenuCollection testMenuCollection;
     Order orderA;
     Order orderB;
@@ -27,12 +27,12 @@ public class TestCollection {
 
         orderA = new Order(0);
         orderB = new Order(1);
-        testOrderCollection = new OrderCollection();
+        testOrderRecords = new OrderRecords();
 
         menuA = new Menu("Menu A");
         menuB = new Menu("Menu B");
 
-        testOrderCollection = new OrderCollection();
+        testOrderRecords = new OrderRecords();
         testMenuCollection = new MenuCollection();
 
         orderA.addItem(itemA);
@@ -44,8 +44,8 @@ public class TestCollection {
 
     @Test
     void testAddOrderWithToString() {
-        testOrderCollection.addOrder(orderA);
-        testOrderCollection.addOrder(orderB);
+        testOrderRecords.addOrder(orderA);
+        testOrderRecords.addOrder(orderB);
 
         assertEquals("<" + LocalDate.now() + " / Table No: 0>" +
                         "\nA / 10.0 / 1" +
@@ -55,7 +55,7 @@ public class TestCollection {
                         "\nB / 3.78 / 1" +
                         "\nTotal 1 items." +
                         "\nTotal: 3.78",
-                testOrderCollection.toString());
+                testOrderRecords.toString());
     }
 
     @Test
@@ -72,13 +72,13 @@ public class TestCollection {
 
     @Test
     void testRemoveOrderWithToString() {
-        testOrderCollection.addOrder(orderA);
-        testOrderCollection.addOrder(orderB);
+        testOrderRecords.addOrder(orderA);
+        testOrderRecords.addOrder(orderB);
 
-        testOrderCollection.removeOrder(orderA);
-        testOrderCollection.removeOrder(orderB);
+        testOrderRecords.removeOrder(orderA);
+        testOrderRecords.removeOrder(orderB);
 
-        assertEquals("", testOrderCollection.toString());
+        assertEquals("", testOrderRecords.toString());
     }
 
     @Test

@@ -2,33 +2,34 @@ package main.model.util;
 
 import main.model.group.Menu;
 import main.model.group.Order;
-import main.model.group.OrderCollection;
+import main.model.group.OrderRecords;
 import main.model.single.Item;
 
 import java.util.List;
 
 /**
- * This class is a utility class to manage orders.
+ * This class is a static utility class to manage orders.
+ * It saves orders made to its order records.
  */
-public class OrderUtil extends Util {
+public class OrderUtil {
+    private static OrderRecords orderRecords;
+    private static OrderRecords currentOrders;
     private static List<Menu> menus;
-    private static OrderCollection orderRecords;
     private static Order order;
+    private static int sales;
 
-    /**
-     * Creates an OrderUtil object that manages orders.
-     * @param newMenus where orders are going to be based on.
-     */
-    public OrderUtil(List<Menu> newMenus) {
-        orderRecords = new OrderCollection();
+    public static void initUtil(List<Menu> newMenus) {
+        orderRecords = new OrderRecords();
+        currentOrders = new OrderRecords();
         menus = newMenus;
+        sales = 0;
     }
 
     /**
      * Creates a new order with a given table number.
      * @param tableNum is the table number of the new order.
      */
-    public void startOrder(int tableNum) {
+    public static void startOrder(int tableNum) {
         order = new Order(tableNum);
     }
 
@@ -37,7 +38,7 @@ public class OrderUtil extends Util {
      * Does nothing if there is no such item in the menu.
      * @param itemName is the name of the item to add.
      */
-    public void addItem(String itemName) {
+    public static void addItem(String itemName) {
         Item newItem = null;
         for(Menu menu : menus) {
             newItem = menu.getItem(itemName);
@@ -52,7 +53,7 @@ public class OrderUtil extends Util {
      * Does nothing if there is no such item in the menu.
      * @param itemName is the name of the item to remove.
      */
-    public void removeItem(String itemName) {
+    public static void removeItem(String itemName) {
         Item newItem = null;
         for(Menu menu : menus) {
             newItem = menu.getItem(itemName);
@@ -65,34 +66,64 @@ public class OrderUtil extends Util {
     /**
      * Makes an order by moving the current order to order records.
      */
-    public void makeOrder() {
+    public static void makeOrder() {
         if(order.numItem() != 0) {
-            orderRecords.addOrder(order);
+            currentOrders.addOrder(order);
+            order.setOrdered();
             order = null;
         }
+    }
+
+    /**
+     * Pays one of the orders that are made.
+     * Picks an order according to the user input.
+     */
+    public static void payOrder(int i) {
+        int index = i - 1;
+        Order picked = (Order) currentOrders.getList().get(index);
+        picked.setPaid();
+        sales += picked.getTotal();
+        orderRecords.addOrder(picked);
+        currentOrders.removeOrder(picked);
     }
 
     /**
      * Checks if OrderUtil is empty.
      * @return true if OrderUtil does NOT have an order, false if it has an ongoing one.
      */
-    public boolean isEmpty() {
+    public static boolean isEmpty() {
         return order == null;
     }
 
     /**
-     * A getter for a current order.
-     * @return the current order.
+     * A getter for the ongoing, unpaid order.
+     * @return Order that is an ongoing, unpaid one.
      */
-    public Order getOrder() {
+    public static Order getOrder() {
         return order;
     }
 
     /**
-     * A getter for order records.
+     * A getter for order records
      * @return order records.
      */
-    public OrderCollection getOrderRecords() {
+    public static OrderRecords getOrderRecords() {
         return orderRecords;
+    }
+
+    /**
+     * A getter for orders that are made but not paid.
+     * @return current orders that are made but not paid.
+     */
+    public static OrderRecords getCurrentOrders() {
+        return currentOrders;
+    }
+
+    /**
+     * A getter for sales.
+     * @return sales in total.
+     */
+    public static int getSales() {
+        return sales;
     }
 }

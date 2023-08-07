@@ -30,38 +30,50 @@ public class TestOrderUtil {
         testMenu.addItem(itemA);
         testMenu.addItem(itemB);
 
-        testOrderUtil = new OrderUtil(testMenuList);
-        testOrderUtil.startOrder(1);
+        OrderUtil.initUtil(testMenuList);
+        OrderUtil.startOrder(1);
     }
 
     @Test
     void testStartOrder() {
-        assertEquals(1, testOrderUtil.getOrder().getTable());
+        assertEquals(1, OrderUtil.getOrder().getTable());
     }
 
     @Test
     void testAddItem() {
-        testOrderUtil.addItem("a");
+        OrderUtil.addItem("a");
         assertEquals(2, testMenu.numItem());
-        assertEquals(10, testOrderUtil.getOrder().getTotal());
+        assertEquals(10, OrderUtil.getOrder().getTotal());
+        OrderUtil.removeItem("a");
     }
 
     @Test
     void testRemoveItem() {
-        testOrderUtil.addItem("a");
-        assertEquals(10, testOrderUtil.getOrder().getTotal());
+        OrderUtil.addItem("a");
+        assertEquals(10, OrderUtil.getOrder().getTotal());
 
-        testOrderUtil.removeItem("a");
-        assertEquals(0, testOrderUtil.getOrder().getTotal());
+        OrderUtil.removeItem("a");
+        assertEquals(0, OrderUtil.getOrder().getTotal());
     }
 
     @Test
     void testMakeOrder() {
-        testOrderUtil.addItem("a");
-        testOrderUtil.makeOrder();
+        OrderUtil.addItem("a");
+        OrderUtil.makeOrder();
 
-        assertNull(testOrderUtil.getOrder());
-        assertEquals(1, testOrderUtil.getOrderRecords().numItems());
-        assertTrue(testOrderUtil.isEmpty());
+        assertNull(OrderUtil.getOrder());
+        assertEquals(1, OrderUtil.getCurrentOrders().numItems());
+        assertTrue(OrderUtil.isEmpty());
+    }
+
+    @Test
+    void testPayOrder() {
+        OrderUtil.addItem("a");
+        OrderUtil.makeOrder();
+        OrderUtil.payOrder(1);
+
+        assertEquals(0, OrderUtil.getCurrentOrders().numOrders());
+        assertEquals(1, OrderUtil.getOrderRecords().numOrders());
+        assertEquals(10, OrderUtil.getSales());
     }
 }
