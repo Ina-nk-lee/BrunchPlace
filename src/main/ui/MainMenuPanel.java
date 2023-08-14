@@ -9,7 +9,7 @@ public class MainMenuPanel extends JPanel {
     private ButtonHandler buttonHandler;
 
     public MainMenuPanel() {
-
+        buttonHandler = new ButtonHandler();
     }
 
     public void setButtons() {
