@@ -13,8 +13,14 @@ import java.util.List;
 
 public class GUI extends JFrame {
     private List<Menu> menus;
+    private MainMenuPanel mainMenuPanel;
     public GUI() {
         super("The Story Cafe");
+        this.setMenus();
+
+        mainMenuPanel = new MainMenuPanel();
+
+        add(mainMenuPanel);
     }
 
     public void takeOrder() {

@@ -6,6 +6,11 @@ public class MainMenuPanel extends JPanel {
     private JButton takeOrder;
     private JButton currentOrders;
     private JButton pay;
+    private ButtonHandler buttonHandler;
+
+    public MainMenuPanel() {
+
+    }
 
     public void setButtons() {
         takeOrder = new JButton("Take Order");
