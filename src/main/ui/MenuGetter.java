@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MenuGetter {
     private List<Menu> menus;
-    private MenuGetter menuGetter;
+    private static MenuGetter menuGetter;
 
     /**
      * Creates a menu and a MenuGetter.
@@ -44,7 +44,7 @@ public class MenuGetter {
      * A getter of a singular MenuGetter instance (Singleton pattern).
      * @return a singular MenuGetter instance.
      */
-    public MenuGetter getInstance() {
+    public static MenuGetter getInstance() {
         if (menuGetter == null) {
             menuGetter = new MenuGetter();
         }
