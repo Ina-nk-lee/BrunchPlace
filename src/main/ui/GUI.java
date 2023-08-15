@@ -16,7 +16,7 @@ public class GUI extends JFrame {
     public static final int WINDOW_HEIGHT = 500;
 
     /**
-     * Creates a GUI by setting its windon and panels.
+     * Creates a GUI by setting its window and panels.
      */
     public GUI() {
         super("The Story Cafe");
@@ -25,19 +25,19 @@ public class GUI extends JFrame {
         mainMenuPanel = new MainMenuPanel(menus);
 
         add(mainMenuPanel);
-        windowConfig();
+        setWindowLoc();
 
         setResizable(false);
         setVisible(true);
     }
 
     /**
-     * Sets a window size of this GUI.
+     * Sets this GUI's window location on the screen.
      */
-    public void windowConfig() {
+    public void setWindowLoc() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screenSize.width - WINDOW_WIDTH) / 2;
-        int y = ((screenSize.height - WINDOW_HEIGHT) / 2);
+        int y = (screenSize.height - WINDOW_HEIGHT) / 2;
         setBounds(x, y, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 }

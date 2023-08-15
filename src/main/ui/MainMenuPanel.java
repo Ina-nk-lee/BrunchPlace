@@ -4,6 +4,7 @@ import main.model.group.Menu;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ import java.util.List;
  * The user can take an order, pay, and see a list of current orders.
  */
 public class MainMenuPanel extends JPanel {
+    private JPanel panel;
     private JButton takeOrder;
     private JButton currentOrders;
     private JButton pay;
@@ -24,6 +26,7 @@ public class MainMenuPanel extends JPanel {
         OrderUtil.initUtil(menus);
         buttonHandler = new ButtonHandler(menus);
         setButtons();
+        setPane();
     }
 
     /**
@@ -35,5 +38,15 @@ public class MainMenuPanel extends JPanel {
         pay = new JButton("Pay");
 
         takeOrder.addActionListener(e -> {buttonHandler.takeOrder();});
+    }
+
+    public void setPane() {
+        GridLayout layout = new GridLayout(3,0);
+        layout.setVgap(5);
+        this.setLayout(layout);
+
+        this.add(takeOrder);
+        this.add(currentOrders);
+        this.add(pay);
     }
 }

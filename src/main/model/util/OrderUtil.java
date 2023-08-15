@@ -39,7 +39,7 @@ public class OrderUtil {
      * @param itemName is the name of the item to add.
      */
     public static void addItem(String itemName) {
-        Item newItem = null;
+        Item newItem;
         for(Menu menu : menus) {
             newItem = menu.getItem(itemName);
             if(newItem != null) {
@@ -54,7 +54,7 @@ public class OrderUtil {
      * @param itemName is the name of the item to remove.
      */
     public static void removeItem(String itemName) {
-        Item newItem = null;
+        Item newItem;
         for(Menu menu : menus) {
             newItem = menu.getItem(itemName);
             if(newItem != null) {
