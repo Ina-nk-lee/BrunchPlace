@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * This class gets a preset menu using a Singleton pattern.
+ * Food items can be added by manually editing setMenus in this class.
  */
 public class MenuGetter {
     private List<Menu> menus;
@@ -20,6 +21,24 @@ public class MenuGetter {
      * Creates a menu and a MenuGetter.
      */
     private MenuGetter() {
+        setMenus();
+    }
+
+    /**
+     * A getter of a singular MenuGetter instance (Singleton pattern).
+     * @return a singular MenuGetter instance.
+     */
+    public static MenuGetter getInstance() {
+        if (menuGetter == null) {
+            menuGetter = new MenuGetter();
+        }
+        return menuGetter;
+    }
+
+    /**
+     * A setter for a list of menus.
+     */
+    public void setMenus() {
         Menu appsMenu = new Menu("Appetizers");
         Menu entreeMenu = new Menu("Entree");
         Menu drinkMenu = new Menu("Drinks");
@@ -38,17 +57,6 @@ public class MenuGetter {
         menuList.add(drinkMenu);
 
         menus = menuList;
-    }
-
-    /**
-     * A getter of a singular MenuGetter instance (Singleton pattern).
-     * @return a singular MenuGetter instance.
-     */
-    public static MenuGetter getInstance() {
-        if (menuGetter == null) {
-            menuGetter = new MenuGetter();
-        }
-        return menuGetter;
     }
 
     /**
