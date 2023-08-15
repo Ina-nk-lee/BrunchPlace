@@ -9,11 +9,17 @@ import main.model.single.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuSetter {
+/**
+ * This class gets a preset menu using a Singleton pattern.
+ */
+public class MenuGetter {
     private List<Menu> menus;
-    private MenuSetter menuSetter;
+    private MenuGetter menuGetter;
 
-    private MenuSetter() {
+    /**
+     * Creates a menu and a MenuGetter.
+     */
+    private MenuGetter() {
         Menu appsMenu = new Menu("Appetizers");
         Menu entreeMenu = new Menu("Entree");
         Menu drinkMenu = new Menu("Drinks");
@@ -34,13 +40,21 @@ public class MenuSetter {
         menus = menuList;
     }
 
-    public MenuSetter getInstance() {
-        if (menuSetter == null) {
-            menuSetter = new MenuSetter();
+    /**
+     * A getter of a singular MenuGetter instance (Singleton pattern).
+     * @return a singular MenuGetter instance.
+     */
+    public MenuGetter getInstance() {
+        if (menuGetter == null) {
+            menuGetter = new MenuGetter();
         }
-        return menuSetter;
+        return menuGetter;
     }
 
+    /**
+     * A getter of a MenuGetter's menu.
+     * @return a menu.
+     */
     public List<Menu> getMenus() {
         return menus;
     }
