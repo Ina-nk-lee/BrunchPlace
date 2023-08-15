@@ -11,6 +11,7 @@ import java.util.List;
 
 public class MenuSetter {
     private List<Menu> menus;
+    private MenuSetter menuSetter;
 
     private MenuSetter() {
         Menu appsMenu = new Menu("Appetizers");
@@ -34,6 +35,13 @@ public class MenuSetter {
     }
 
     public MenuSetter getInstance() {
-        return this;
+        if (menuSetter == null) {
+            menuSetter = new MenuSetter();
+        }
+        return menuSetter;
+    }
+
+    public List<Menu> getMenus() {
+        return menus;
     }
 }
