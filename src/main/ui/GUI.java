@@ -5,6 +5,8 @@ import main.model.util.OrderUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,8 +14,10 @@ import java.util.List;
  */
 public class GUI extends JFrame {
     private List<Menu> menus;
-    private MainMenuPanel mainMenuPanel;
+    private MainPanel mainPanel;
     private ButtonHandler buttonHandler;
+    private JLabel clock;
+    private Timer timer;
     public static final int WINDOW_WIDTH = 500;
     public static final int WINDOW_HEIGHT = 500;
 
@@ -25,10 +29,14 @@ public class GUI extends JFrame {
         this.menus = MenuGetter.getInstance().getMenus();
         OrderUtil.initUtil(menus);
         this.buttonHandler = new ButtonHandler(menus);
+        mainPanel = new MainPanel(buttonHandler);
 
-        mainMenuPanel = new MainMenuPanel(buttonHandler);
+        clock = new JLabel(new Date().toString());
+        ActionListener updateClock = e -> clock.setText(new Date().toString());
+        timer = new Timer(1000, updateClock);
+        timer.start();
 
-        add(mainMenuPanel);
+        add(mainPanel);
         setWindowLoc();
 
         setResizable(false);
@@ -38,7 +46,7 @@ public class GUI extends JFrame {
     /**
      * Sets this GUI's window location on the screen.
      */
-    public void setWindowLoc() {
+    private void setWindowLoc() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screenSize.width - WINDOW_WIDTH) / 2;
         int y = (screenSize.height - WINDOW_HEIGHT) / 2;
