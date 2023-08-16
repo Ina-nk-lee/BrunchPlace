@@ -1,6 +1,7 @@
 package main.ui;
 
 import main.model.group.Menu;
+import main.model.util.OrderUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,7 @@ import java.util.List;
 public class GUI extends JFrame {
     private List<Menu> menus;
     private MainMenuPanel mainMenuPanel;
+    private ButtonHandler buttonHandler;
     public static final int WINDOW_WIDTH = 500;
     public static final int WINDOW_HEIGHT = 500;
 
@@ -21,8 +23,10 @@ public class GUI extends JFrame {
     public GUI() {
         super("The Story Cafe");
         this.menus = MenuGetter.getInstance().getMenus();
+        OrderUtil.initUtil(menus);
+        this.buttonHandler = new ButtonHandler(menus);
 
-        mainMenuPanel = new MainMenuPanel(menus);
+        mainMenuPanel = new MainMenuPanel(buttonHandler);
 
         add(mainMenuPanel);
         setWindowLoc();

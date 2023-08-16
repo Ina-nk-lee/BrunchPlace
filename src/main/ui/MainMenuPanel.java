@@ -1,13 +1,9 @@
 package main.ui;
 
-import main.model.group.Menu;
-import main.model.util.OrderUtil;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.util.List;
 
 /**
  * This class is a panel of a main menu.
@@ -21,11 +17,11 @@ public class MainMenuPanel extends JPanel {
 
     /**
      * Creates a main menu panel with a given food menu list.
-     * @param menus is a list of food menus to use in the panel.
+     * @param buttonHandler is a handler for button click events.
      */
-    public MainMenuPanel(List<Menu> menus) {
-        OrderUtil.initUtil(menus);
-        buttonHandler = new ButtonHandler(menus);
+    public MainMenuPanel(ButtonHandler buttonHandler) {
+        this.buttonHandler = buttonHandler;
+
         setButtons();
         setPane();
     }

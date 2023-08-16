@@ -9,6 +9,7 @@ import java.util.List;
  * This class handles button click events in BrunchPlace.
  */
 public class ButtonHandler {
+    private GUI gui;
     private List<Menu> menus;
 
     /**
