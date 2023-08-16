@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class GUI extends JFrame {
     private List<Menu> menus;
-    private MainPanel mainPanel;
+    protected MainPanel mainPanel;
     private ButtonHandler buttonHandler;
     private JLabel clock;
     private Timer timer;
@@ -28,7 +28,7 @@ public class GUI extends JFrame {
         super("The Story Cafe");
         this.menus = MenuGetter.getInstance().getMenus();
         OrderUtil.initUtil(menus);
-        this.buttonHandler = new ButtonHandler(menus);
+        this.buttonHandler = new ButtonHandler(this);
         mainPanel = new MainPanel(buttonHandler);
 
         clock = new JLabel(new Date().toString());

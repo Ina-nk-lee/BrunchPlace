@@ -72,4 +72,9 @@ public class MainPanel extends JSplitPane {
         setBottomComponent(bottomPanel);
         setEnabled(false);
     }
+
+    protected void setTopPanel(JSplitPane panel) {
+        panel.setBorder(new TitledBorder(new LineBorder(new Color(173, 216, 230), 5), "The Story Cafe"));
+        setTopComponent(panel);
+    }
 }

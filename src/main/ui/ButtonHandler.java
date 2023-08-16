@@ -14,15 +14,16 @@ public class ButtonHandler {
 
     /**
      * Creates a ButtonHandler with a given food menu.
-     * @param menus to use
      */
-    public ButtonHandler(List<Menu> menus) {
-        this.menus = menus;
+    public ButtonHandler(GUI gui) {
+        this.menus = MenuGetter.getInstance().getMenus();
+        this.gui = gui;
     }
 
 
     public void takeOrder() {
-
         OrderUtil.startOrder(0);
+        gui.mainPanel.setTopPanel(new TakeOrderPanel());
+
     }
 }
