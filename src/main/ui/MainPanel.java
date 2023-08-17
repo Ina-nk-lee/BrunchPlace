@@ -73,17 +73,27 @@ public class MainPanel extends JSplitPane {
         openMainMenu();
     }
 
+    /**
+     * Opens a main menu on the top panel.
+     */
     protected void openMainMenu() {
         setTopComponent(topPanel);
         setDivider();
     }
 
+    /**
+     * Opens a given SplitPane on the main panel.
+     * @param panel to be opened.
+     */
     protected void openPanel(JSplitPane panel) {
         panel.setBorder(new TitledBorder(new LineBorder(new Color(173, 216, 230), 5), "The Story Cafe"));
         setTopComponent(panel);
         setDivider();
     }
 
+    /**
+     * Sets a divider at a default location.
+     */
     private void setDivider() {
         setDividerLocation(DIVIDER_LOC);
     }

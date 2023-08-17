@@ -20,7 +20,9 @@ public class ButtonHandler {
         this.gui = gui;
     }
 
-
+    /**
+     * Processes taking orders.
+     */
     public void takeOrder() {
         OrderUtil.startOrder(0);
         gui.mainPanel.openPanel(new TakeOrderPanel());

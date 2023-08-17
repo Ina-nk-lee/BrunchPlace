@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class TakeOrderPanel extends JSplitPane {
     private List<Menu> menus;
-    private JPanel menuPanel;
+    private JScrollPane menuPanel;
     private JPanel listPanel;
     private JScrollPane scrollPane;
     private JPanel orderPane;
@@ -22,8 +22,10 @@ public class TakeOrderPanel extends JSplitPane {
     }
 
     private void setMenuPanel() {
-        menuPanel = new JPanel();
-        menuPanel.setLayout(new GridLayout(3, 3, 3, 3));
+        menuPanel = new JScrollPane();
+        menuPanel.setLayout(new GridLayout(0, 3, 5, 5));
+
+
         setMenuButtons();
     }
 
@@ -37,7 +39,9 @@ public class TakeOrderPanel extends JSplitPane {
 
         scrollPane = new JScrollPane();
         JTextArea cart = new JTextArea("text");
+        cart.setEditable(false);
         scrollPane.setViewportView(cart);
+        scrollPane.setPreferredSize(new Dimension(500, 350));
 
         orderPane = new JPanel();
         orderPane.setLayout(new GridLayout());
@@ -58,4 +62,5 @@ public class TakeOrderPanel extends JSplitPane {
         setRightComponent(listPanel);
         setEnabled(false);
     }
+
 }
