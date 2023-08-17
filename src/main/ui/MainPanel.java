@@ -18,6 +18,7 @@ public class MainPanel extends JSplitPane {
     private JButton takeOrder;
     private JButton currentOrders;
     private JButton pay;
+    private final int DIVIDER_LOC = 435;
 
     /**
      * Creates a main menu panel with options: take order, pay, and current orders.
@@ -67,14 +68,23 @@ public class MainPanel extends JSplitPane {
         bottomPanel.add(clock);
 
         setOrientation(JSplitPane.VERTICAL_SPLIT);
-        setDividerLocation(435);
-        setTopComponent(topPanel);
         setBottomComponent(bottomPanel);
         setEnabled(false);
+        openMainMenu();
     }
 
-    protected void setTopPanel(JSplitPane panel) {
+    protected void openMainMenu() {
+        setTopComponent(topPanel);
+        setDivider();
+    }
+
+    protected void openPanel(JSplitPane panel) {
         panel.setBorder(new TitledBorder(new LineBorder(new Color(173, 216, 230), 5), "The Story Cafe"));
         setTopComponent(panel);
+        setDivider();
+    }
+
+    private void setDivider() {
+        setDividerLocation(DIVIDER_LOC);
     }
 }

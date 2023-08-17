@@ -23,7 +23,7 @@ public class ButtonHandler {
 
     public void takeOrder() {
         OrderUtil.startOrder(0);
-        gui.mainPanel.setTopPanel(new TakeOrderPanel());
+        gui.mainPanel.openPanel(new TakeOrderPanel());
 
     }
 }

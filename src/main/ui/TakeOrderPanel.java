@@ -53,7 +53,7 @@ public class TakeOrderPanel extends JSplitPane {
         setListPanel();
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
-        setDividerLocation(435);
+        setDividerLocation(350);
         setLeftComponent(menuPanel);
         setRightComponent(listPanel);
         setEnabled(false);
