@@ -3,19 +3,17 @@ package main.model.group;
 import main.model.single.Item;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class represents a group of items.
  */
-public class Group {
-    protected List<Item> items;
+public class Group extends ArrayList<Item>{
 
     /**
      * Creates an item group.
      */
     public Group() {
-        items = new ArrayList<>();
+        super();
     }
 
     /**
@@ -23,7 +21,7 @@ public class Group {
      * @param item to be added.
      */
     public void addItem(Item item) {
-        items.add(item);
+        this.add(item);
     }
 
     /**
@@ -31,7 +29,7 @@ public class Group {
      * @param item to be removed.
      */
     public void removeItem(Item item) {
-        items.remove(item);
+        this.remove(item);
     }
 
     /**
@@ -39,15 +37,7 @@ public class Group {
      * @return the number of items in this group.
      */
     public int numItem() {
-        return items.size();
-    }
-
-    /**
-     * Gets the list of items in this group.
-     * @return the list of items in this group.
-     */
-    protected List<Item> getItems() {
-        return items;
+        return this.size();
     }
 
     /**
@@ -59,7 +49,7 @@ public class Group {
     public String toString(String headline) {
         StringBuilder result = new StringBuilder();
         result.append("<").append(headline).append(">").append("\n");
-        for (Item it : items) {
+        for (Item it : this) {
             result.append(it.toString()).append("\n");
         }
 

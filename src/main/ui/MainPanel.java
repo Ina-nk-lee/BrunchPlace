@@ -18,7 +18,7 @@ public class MainPanel extends JSplitPane {
     private JButton takeOrder;
     private JButton currentOrders;
     private JButton pay;
-    private final int DIVIDER_LOC = 435;
+    private final int DIVIDER_LOC = 485;
 
     /**
      * Creates a main menu panel with options: take order, pay, and current orders.

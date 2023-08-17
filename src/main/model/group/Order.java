@@ -85,7 +85,7 @@ public class Order extends Group {
 
     //  Updates OrderList according to the items(ArrayList) to calculate the quantity of each item.
     private void updateOrderList() {
-        for(Item it : super.items) {
+        for(Item it : this) {
             if(orderList.containsKey(it)) {
                 orderList.put(it, orderList.get(it) + 1);
             } else {

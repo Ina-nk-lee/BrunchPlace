@@ -23,7 +23,7 @@ public class Menu extends Group {
      * @return the item with the given name. null if there is none.
      */
     public Item getItem(String itemName) {
-        for(Item i : super.getItems()) {
+        for(Item i : this) {
             if(i.getName().equalsIgnoreCase(itemName)) {
                 return i;
             }

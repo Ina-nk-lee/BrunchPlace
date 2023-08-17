@@ -43,7 +43,7 @@ public class MenuCollection extends Collection {
             result.append("<").append(menu.getName()).append(">").append("\n");
 
             //  Puts items with a shared numbering.
-            for(Item i : it.getItems()) {
+            for(Item i : it) {
                 result.append(numbering++).append(". ").append(i.toString()).append("\n");
             }
         }

@@ -1,9 +1,11 @@
 package main.ui;
 
 import main.model.group.Menu;
+import main.model.single.Item;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,22 +17,28 @@ public class TakeOrderPanel extends JSplitPane {
     private JPanel listPanel;
     private JScrollPane scrollPane;
     private JPanel orderPane;
-    List<ItemButton> itemButtons;
+    private List<ItemButton> itemButtons;
+    private final int DIVIDER_LOC = 480;
 
     public TakeOrderPanel() {
         menus = MenuGetter.getInstance().getMenus();
+        itemButtons = new ArrayList<>();
+
         setPanels();
     }
 
     private void setMenuPanel() {
-        menuPanel = new JScrollPane();
-        menuPanel.setLayout(new GridLayout(0, 3, 5, 5));
+        JPanel itemPanel = new JPanel();
+        menuPanel = new JScrollPane(itemPanel);
+        itemPanel.setLayout(new GridLayout(0, 3, 5, 5));
 
-        setItemButtons();
-    }
-
-    private void setItemButtons() {
-
+        for(Menu menu : menus) {
+            for(Item item : menu) {
+                ItemButton button = new ItemButton(item);
+                itemButtons.add(button);
+                itemPanel.add(button);
+            }
+        }
     }
 
     private void setListPanel() {
@@ -38,7 +46,7 @@ public class TakeOrderPanel extends JSplitPane {
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
 
         scrollPane = new JScrollPane();
-        JTextArea cart = new JTextArea("text");
+        JTextArea cart = new JTextArea("Cart");
         cart.setEditable(false);
         scrollPane.setViewportView(cart);
         scrollPane.setPreferredSize(new Dimension(500, 350));
@@ -57,7 +65,7 @@ public class TakeOrderPanel extends JSplitPane {
         setListPanel();
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
-        setDividerLocation(350);
+        setDividerLocation(DIVIDER_LOC);
         setLeftComponent(menuPanel);
         setRightComponent(listPanel);
         setEnabled(false);

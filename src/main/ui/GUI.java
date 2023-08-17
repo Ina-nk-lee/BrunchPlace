@@ -18,8 +18,8 @@ public class GUI extends JFrame {
     private ButtonHandler buttonHandler;
     private JLabel clock;
     private Timer timer;
-    public static final int WINDOW_WIDTH = 500;
-    public static final int WINDOW_HEIGHT = 500;
+    public static final int WINDOW_WIDTH = 650;
+    public static final int WINDOW_HEIGHT = 550;
 
     /**
      * Creates a GUI by setting its window and panels.
