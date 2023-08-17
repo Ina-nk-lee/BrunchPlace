@@ -15,6 +15,7 @@ public class TakeOrderPanel extends JSplitPane {
     private JPanel listPanel;
     private JScrollPane scrollPane;
     private JPanel orderPane;
+    List<ItemButton> itemButtons;
 
     public TakeOrderPanel() {
         menus = MenuGetter.getInstance().getMenus();
@@ -25,11 +26,10 @@ public class TakeOrderPanel extends JSplitPane {
         menuPanel = new JScrollPane();
         menuPanel.setLayout(new GridLayout(0, 3, 5, 5));
 
-
-        setMenuButtons();
+        setItemButtons();
     }
 
-    private void setMenuButtons() {
+    private void setItemButtons() {
 
     }
 
