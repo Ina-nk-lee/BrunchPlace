@@ -30,7 +30,8 @@ public class TakeOrderPanel extends JSplitPane {
     private void setMenuPanel() {
         JPanel itemPanel = new JPanel();
         menuPanel = new JScrollPane(itemPanel);
-        itemPanel.setLayout(new GridLayout(0, 3, 5, 5));
+        itemPanel.setLayout(new GridLayout(0, 3, 0, 0));
+        itemPanel.setPreferredSize(new Dimension(400, 500));
 
         for(Menu menu : menus) {
             for(Item item : menu) {
@@ -49,7 +50,7 @@ public class TakeOrderPanel extends JSplitPane {
         JTextArea cart = new JTextArea("Cart");
         cart.setEditable(false);
         scrollPane.setViewportView(cart);
-        scrollPane.setPreferredSize(new Dimension(500, 350));
+        scrollPane.setPreferredSize(new Dimension(500, 5000));
 
         orderPane = new JPanel();
         orderPane.setLayout(new GridLayout());

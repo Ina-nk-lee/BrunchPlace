@@ -44,12 +44,30 @@ public class MenuGetter {
         Menu drinkMenu = new Menu("Drinks");
 
         Item truffleFries = new App("Truffle Fries", 8.5);
+        Item clamChowder = new App("Clam Chowder", 12);
+        Item beetSalad = new App("Beet Salad", 14);
+        Item beefCarpaccio = new App("Beet Carpaccio", 19);
+
         Item carbonara = new Entree("Carbonara", 19.5);
+        Item eggsBenedict = new Entree("Eggs Benedict", 21);
+        Item chickenFrenchToast = new Entree("Chicken French Toast", 22);
+        Item avocadoToast = new Entree("Avocado Toast", 17);
+
         Item lemonSour = new Drink("Lemon Sour", 11.0);
+        Item mimosa = new Drink("Mimosa", 10);
 
         appsMenu.addItem(truffleFries);
+        appsMenu.addItem(clamChowder);
+        appsMenu.addItem(beetSalad);
+        appsMenu.addItem(beefCarpaccio);
+
         entreeMenu.addItem(carbonara);
+        entreeMenu.addItem(eggsBenedict);
+        entreeMenu.addItem(chickenFrenchToast);
+        entreeMenu.addItem(avocadoToast);
+
         drinkMenu.addItem(lemonSour);
+        drinkMenu.addItem(mimosa);
 
         List<Menu> menuList = new ArrayList<>();
         menuList.add(appsMenu);
