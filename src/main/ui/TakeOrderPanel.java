@@ -20,6 +20,10 @@ public class TakeOrderPanel extends JSplitPane {
     private List<ItemButton> itemButtons;
     private final int DIVIDER_LOC = 480;
 
+    /**
+     * Creates a panel for taking orders.
+     * It takes order based on a menu from MenuGetter.java, which uses a singleton pattern.
+     */
     public TakeOrderPanel() {
         menus = MenuGetter.getInstance().getMenus();
         itemButtons = new ArrayList<>();
@@ -27,6 +31,26 @@ public class TakeOrderPanel extends JSplitPane {
         setPanels();
     }
 
+    /**
+     * Sets this panel, that is divided into two panels horizontally.
+     * A menu panel goes to the top, and a list panel goes to the bottom.
+     */
+    private void setPanels() {
+        setMenuPanel();
+        setListPanel();
+
+        setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+        setDividerLocation(DIVIDER_LOC);
+        setLeftComponent(menuPanel);
+        setRightComponent(listPanel);
+        setEnabled(false);
+    }
+
+    /**
+     * Sets a menu panel, which is a left component of the entire panel.
+     * It shows all the menu items in the menu as buttons.
+     * An item panel that shows all the item buttons in a grid goes on top of a JScrollPane.
+     */
     private void setMenuPanel() {
         JPanel itemPanel = new JPanel();
         menuPanel = new JScrollPane(itemPanel);
@@ -42,6 +66,10 @@ public class TakeOrderPanel extends JSplitPane {
         }
     }
 
+    /**
+     * Sets a list panel, which shows all the items in the cart, and an order button.
+     * Cart items in a JScrollPane are on the top, and the order button is at the bottom.
+     */
     private void setListPanel() {
         listPanel = new JPanel();
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
@@ -60,16 +88,4 @@ public class TakeOrderPanel extends JSplitPane {
         listPanel.add(scrollPane);
         listPanel.add(orderPane);
     }
-
-    private void setPanels() {
-        setMenuPanel();
-        setListPanel();
-
-        setOrientation(JSplitPane.HORIZONTAL_SPLIT);
-        setDividerLocation(DIVIDER_LOC);
-        setLeftComponent(menuPanel);
-        setRightComponent(listPanel);
-        setEnabled(false);
-    }
-
 }
