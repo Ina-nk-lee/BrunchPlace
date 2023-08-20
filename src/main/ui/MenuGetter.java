@@ -46,7 +46,7 @@ public class MenuGetter {
         Item truffleFries = new App("Truffle Fries", 8.5);
         Item clamChowder = new App("Clam Chowder", 12);
         Item beetSalad = new App("Beet Salad", 14);
-        Item beefCarpaccio = new App("Beet Carpaccio", 19);
+        Item beefCarpaccio = new App("Beef Carpaccio", 19);
 
         Item carbonara = new Entree("Carbonara", 19.5);
         Item eggsBenedict = new Entree("Eggs Benedict", 21);
