@@ -32,24 +32,27 @@ public class ButtonHandler {
                 "Question", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 
         String input = "";
+        int tableNo = 0;
 
         if(option == 1) {
-            //  If it is a dine-in, it receives a user input for a table number.
-            try {
-                while(input.equals("")) {
-                    input = JOptionPane.showInputDialog(new JFrame(), "Enter a table number.");}
-                } catch(NullPointerException e) {
-                //  Returns if there is no input.
-                return;
-            }
+            while(input.equals("")) {
+                input = JOptionPane.showInputDialog(new JFrame(), "Enter a table number.");
 
-            //  If it is a take-out, it automatically chooses 0 for a table number.
-        } else {
-            input = "0";
+                //  Goes back if the user put nothing.
+                if(input == null) {
+                    return;
+                }
+
+                //  Asks again if the user put an invalid input.
+                try {
+                    tableNo = Integer.parseInt(input);
+                } catch(NumberFormatException e) {
+                    input = "";
+                }
+            }
         }
 
         //  Takes an order based on the table number.
-        int tableNo = Integer.parseInt(input);
         OrderUtil.startOrder(tableNo);
         gui.mainPanel.openPanel(new TakeOrderPanel());
     }
