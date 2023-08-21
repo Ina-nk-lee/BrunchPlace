@@ -92,13 +92,13 @@ public class MenuGetter {
 
         Item carbonara = new Entree("Carbonara", 19.5);
         Item eggsBenedict = new Entree("Eggs Benedict", 21);
-        Item chickenFrenchToast = new Entree("Chicken French Toast", 22);
+        Item chickenFrenchToast = new Entree("Chicken Toast", 22);
 
         Item avocadoToast = new Entree("Avocado Toast", 17);
         Item eggInHell = new Entree("Egg In Hell", 18.5);
         Item englishBreakfast = new Entree("English Breakfast", 14.5);
 
-        Item porkBellyPancakes = new Entree("Pork Belly Pancakes", 20.5);
+        Item porkBellyPancakes = new Entree("Pancakes", 20.5);
 
         entreeMenu.addItem(carbonara);
         entreeMenu.addItem(eggsBenedict);
