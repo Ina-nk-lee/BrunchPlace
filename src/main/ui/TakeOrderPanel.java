@@ -62,7 +62,7 @@ public class TakeOrderPanel extends JSplitPane {
         JPanel itemPanel = new JPanel();
         JScrollPane menuPane = new JScrollPane(itemPanel);
         itemPanel.setLayout(new GridLayout(0, 3, 0, 0));
-        itemPanel.setPreferredSize(new Dimension(400, 300));
+//        itemPanel.setPreferredSize(new Dimension(400, 500));
 
         for(Item item : menu) {
             ItemButton button = new ItemButton(item);

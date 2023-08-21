@@ -24,7 +24,7 @@ public class MenuGetter {
      * Creates a menu and a MenuGetter.
      */
     private MenuGetter() {
-        List<Menu> menus = new ArrayList<>();
+        menus = new ArrayList<>();
         setMenus();
     }
 
@@ -59,14 +59,29 @@ public class MenuGetter {
         appsMenu = new Menu("Appetizer");
 
         Item truffleFries = new App("Truffle Fries", 8.5);
-        Item clamChowder = new App("Clam Chowder", 12);
-        Item beetSalad = new App("Beet Salad", 14);
+        Item clamChowder = new App("Clam Chowder", 12.0);
+        Item beetSalad = new App("Beet Salad", 14.0);
+
         Item beefCarpaccio = new App("Beef Carpaccio", 19);
+        Item calamariFries = new App("Calamari Fries", 15.5);
+        Item hotWings = new App("Hot Wings", 12.5);
+
+        Item shrimpCocktail = new App("Shrimp Cocktail", 11.0);
+        Item onionRings = new App("Onion Rings", 7.0);
+        Item freshOysters = new App("Fresh Oysters", 3);
+
+        Item honeyMussels = new App("Honey Mussels", 23);
 
         appsMenu.addItem(truffleFries);
         appsMenu.addItem(clamChowder);
         appsMenu.addItem(beetSalad);
         appsMenu.addItem(beefCarpaccio);
+        appsMenu.addItem(calamariFries);
+        appsMenu.addItem(hotWings);
+        appsMenu.addItem(shrimpCocktail);
+        appsMenu.addItem(onionRings);
+        appsMenu.addItem(freshOysters);
+        appsMenu.addItem(honeyMussels);
     }
 
     /**
@@ -78,12 +93,20 @@ public class MenuGetter {
         Item carbonara = new Entree("Carbonara", 19.5);
         Item eggsBenedict = new Entree("Eggs Benedict", 21);
         Item chickenFrenchToast = new Entree("Chicken French Toast", 22);
+
         Item avocadoToast = new Entree("Avocado Toast", 17);
+        Item eggInHell = new Entree("Egg In Hell", 18.5);
+        Item englishBreakfast = new Entree("English Breakfast", 14.5);
+
+        Item porkBellyPancakes = new Entree("Pork Belly Pancakes", 20.5);
 
         entreeMenu.addItem(carbonara);
         entreeMenu.addItem(eggsBenedict);
         entreeMenu.addItem(chickenFrenchToast);
         entreeMenu.addItem(avocadoToast);
+        entreeMenu.addItem(eggInHell);
+        entreeMenu.addItem(englishBreakfast);
+        entreeMenu.addItem(porkBellyPancakes);
     }
 
     /**
@@ -94,9 +117,11 @@ public class MenuGetter {
 
         Item lemonSour = new Drink("Lemon Sour", 11.0);
         Item mimosa = new Drink("Mimosa", 10);
+        Item coffee = new Drink("Coffee", 4.5);
 
         drinkMenu.addItem(lemonSour);
         drinkMenu.addItem(mimosa);
+        drinkMenu.addItem(coffee);
     }
 
     /**
