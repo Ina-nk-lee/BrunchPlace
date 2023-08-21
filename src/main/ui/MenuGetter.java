@@ -40,14 +40,21 @@ public class MenuGetter {
     }
 
     /**
-     * A setter for a list of menus.
+     * A setter for menus.
      */
     public void setMenus() {
+        setAppMenu();
+        setEntreeMenu();
+        setDrinkMenu();
+
         menus.add(appsMenu);
         menus.add(entreeMenu);
         menus.add(drinkMenu);
     }
 
+    /**
+     * A setter for an appetizer menu.
+     */
     private void setAppMenu() {
         appsMenu = new Menu("Appetizer");
 
@@ -62,6 +69,9 @@ public class MenuGetter {
         appsMenu.addItem(beefCarpaccio);
     }
 
+    /**
+     * A setter for an entree menu.
+     */
     private void setEntreeMenu() {
         entreeMenu = new Menu("Entree");
 
@@ -76,6 +86,9 @@ public class MenuGetter {
         entreeMenu.addItem(avocadoToast);
     }
 
+    /**
+     * A setter for a drink menu.
+     */
     private void setDrinkMenu() {
         drinkMenu = new Menu("Drink");
 
