@@ -6,6 +6,6 @@ import javax.swing.*;
 
 public class ItemButton extends JButton {
     public ItemButton(Item item) {
-        super("<html>" + item.getName() + "<br>$" + item.getPrice() + "</html>");
+        super("<html><br><br><br>" + item.getName() + "<br>$" + item.getPrice() + "<br><br><br></html>");
     }
 }

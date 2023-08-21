@@ -59,16 +59,40 @@ public class TakeOrderPanel extends JSplitPane {
      * An item panel that shows all the item buttons in a grid goes on top of a JScrollPane.
      */
     private JScrollPane setMenuPane(Menu menu) {
+        // preferred button height = 40
+        // preferred button width = 108
+
         JPanel itemPanel = new JPanel();
-        JScrollPane menuPane = new JScrollPane(itemPanel);
-        itemPanel.setLayout(new GridLayout(0, 3, 0, 0));
-        itemPanel.setPreferredSize(new Dimension(400, itemPanel.getPreferredSize().height));
+        itemPanel.setLayout(new GridBagLayout());
+
+        int x = 0;
+        int y = 0;
 
         for(Item item : menu) {
+            GridBagConstraints constraints = new GridBagConstraints();
+
+            if(x % 3 == 0) {
+                x = 0;
+                y++;
+            }
+
+            constraints.gridx = x;
+            constraints.gridy = y;
+            constraints.weightx = 1;
+            constraints.fill = GridBagConstraints.HORIZONTAL;
+
             ItemButton button = new ItemButton(item);
+            button.setPreferredSize(new Dimension(108, 150));
             itemButtons.add(button);
-            itemPanel.add(button);
+            itemPanel.add(button, constraints);
+
+            x++;
         }
+
+        JScrollPane menuPane = new JScrollPane(itemPanel);
+        itemPanel.setPreferredSize(new Dimension(itemPanel.getPreferredSize().width, itemPanel.getPreferredSize().height));
+        menuPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        menuPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         return menuPane;
     }
