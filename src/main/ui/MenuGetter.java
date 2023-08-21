@@ -15,12 +15,16 @@ import java.util.List;
  */
 public class MenuGetter {
     private List<Menu> menus;
+    private Menu appsMenu;
+    private Menu entreeMenu;
+    private Menu drinkMenu;
     private static MenuGetter menuGetter;
 
     /**
      * Creates a menu and a MenuGetter.
      */
     private MenuGetter() {
+        List<Menu> menus = new ArrayList<>();
         setMenus();
     }
 
@@ -39,42 +43,47 @@ public class MenuGetter {
      * A setter for a list of menus.
      */
     public void setMenus() {
-        Menu appsMenu = new Menu("Appetizers");
-        Menu entreeMenu = new Menu("Entree");
-        Menu drinkMenu = new Menu("Drinks");
+        menus.add(appsMenu);
+        menus.add(entreeMenu);
+        menus.add(drinkMenu);
+    }
+
+    private void setAppMenu() {
+        appsMenu = new Menu("Appetizer");
 
         Item truffleFries = new App("Truffle Fries", 8.5);
         Item clamChowder = new App("Clam Chowder", 12);
         Item beetSalad = new App("Beet Salad", 14);
         Item beefCarpaccio = new App("Beef Carpaccio", 19);
 
+        appsMenu.addItem(truffleFries);
+        appsMenu.addItem(clamChowder);
+        appsMenu.addItem(beetSalad);
+        appsMenu.addItem(beefCarpaccio);
+    }
+
+    private void setEntreeMenu() {
+        entreeMenu = new Menu("Entree");
+
         Item carbonara = new Entree("Carbonara", 19.5);
         Item eggsBenedict = new Entree("Eggs Benedict", 21);
         Item chickenFrenchToast = new Entree("Chicken French Toast", 22);
         Item avocadoToast = new Entree("Avocado Toast", 17);
 
-        Item lemonSour = new Drink("Lemon Sour", 11.0);
-        Item mimosa = new Drink("Mimosa", 10);
-
-        appsMenu.addItem(truffleFries);
-        appsMenu.addItem(clamChowder);
-        appsMenu.addItem(beetSalad);
-        appsMenu.addItem(beefCarpaccio);
-
         entreeMenu.addItem(carbonara);
         entreeMenu.addItem(eggsBenedict);
         entreeMenu.addItem(chickenFrenchToast);
         entreeMenu.addItem(avocadoToast);
+    }
+
+    private void setDrinkMenu() {
+        drinkMenu = new Menu("Drink");
+
+        Item lemonSour = new Drink("Lemon Sour", 11.0);
+        Item mimosa = new Drink("Mimosa", 10);
 
         drinkMenu.addItem(lemonSour);
         drinkMenu.addItem(mimosa);
-
-        List<Menu> menuList = new ArrayList<>();
-        menuList.add(appsMenu);
-        menuList.add(entreeMenu);
-        menuList.add(drinkMenu);
-
-        menus = menuList;
     }
 
     /**

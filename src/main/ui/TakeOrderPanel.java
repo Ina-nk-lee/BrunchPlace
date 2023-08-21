@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class TakeOrderPanel extends JSplitPane {
     private List<Menu> menus;
-    private JScrollPane menuPanel;
     private JPanel listPanel;
+    private JTabbedPane tabPanel;
     private JScrollPane scrollPane;
     private JPanel orderPane;
     private List<ItemButton> itemButtons;
@@ -36,34 +36,41 @@ public class TakeOrderPanel extends JSplitPane {
      * A menu panel goes to the top, and a list panel goes to the bottom.
      */
     private void setPanels() {
-        setMenuPanel();
+        setTabs();
         setListPanel();
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setDividerLocation(DIVIDER_LOC);
-        setLeftComponent(menuPanel);
+        setLeftComponent(tabPanel);
         setRightComponent(listPanel);
         setEnabled(false);
     }
 
+    private void setTabs() {
+        tabPanel = new JTabbedPane();
+        for(Menu menu : menus) {
+            tabPanel.addTab(menu.getName(), setMenuPane(menu));
+        }
+    }
+
     /**
-     * Sets a menu panel, which is a left component of the entire panel.
+     * Sets a menu pane, which goes into a tab panel.
      * It shows all the menu items in the menu as buttons.
      * An item panel that shows all the item buttons in a grid goes on top of a JScrollPane.
      */
-    private void setMenuPanel() {
+    private JScrollPane setMenuPane(Menu menu) {
         JPanel itemPanel = new JPanel();
-        menuPanel = new JScrollPane(itemPanel);
+        JScrollPane menuPane = new JScrollPane(itemPanel);
         itemPanel.setLayout(new GridLayout(0, 3, 0, 0));
-        itemPanel.setPreferredSize(new Dimension(400, 500));
+        itemPanel.setPreferredSize(new Dimension(400, 300));
 
-        for(Menu menu : menus) {
-            for(Item item : menu) {
-                ItemButton button = new ItemButton(item);
-                itemButtons.add(button);
-                itemPanel.add(button);
-            }
+        for(Item item : menu) {
+            ItemButton button = new ItemButton(item);
+            itemButtons.add(button);
+            itemPanel.add(button);
         }
+
+        return menuPane;
     }
 
     /**
