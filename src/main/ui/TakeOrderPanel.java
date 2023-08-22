@@ -17,6 +17,7 @@ public class TakeOrderPanel extends JSplitPane {
     private JTabbedPane tabPanel;
     private JScrollPane scrollPane;
     private JPanel orderPane;
+    private ButtonHandler buttonHandler;
     private List<ItemButton> itemButtons;
     private final int DIVIDER_LOC = 480;
 
@@ -24,9 +25,10 @@ public class TakeOrderPanel extends JSplitPane {
      * Creates a panel for taking orders.
      * It takes order based on a menu from MenuGetter.java, which uses a singleton pattern.
      */
-    public TakeOrderPanel() {
-        menus = MenuGetter.getInstance().getMenus();
-        itemButtons = new ArrayList<>();
+    public TakeOrderPanel(ButtonHandler buttonHandler) {
+        this.menus = MenuGetter.getInstance().getMenus();
+        this.itemButtons = new ArrayList<>();
+        this.buttonHandler = buttonHandler;
 
         setPanels();
     }
@@ -46,6 +48,9 @@ public class TakeOrderPanel extends JSplitPane {
         setEnabled(false);
     }
 
+    /**
+     * Sets a tab for each menu.
+     */
     private void setTabs() {
         tabPanel = new JTabbedPane();
         for(Menu menu : menus) {
@@ -83,6 +88,7 @@ public class TakeOrderPanel extends JSplitPane {
 
             ItemButton button = new ItemButton(item);
             button.setPreferredSize(new Dimension(108, 150));
+            button.addActionListener(e -> buttonHandler.addItem(button.item));
             itemButtons.add(button);
             itemPanel.add(button, constraints);
 

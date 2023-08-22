@@ -1,6 +1,7 @@
 package main.ui;
 
 import main.model.group.Menu;
+import main.model.single.Item;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
@@ -54,6 +55,10 @@ public class ButtonHandler {
 
         //  Takes an order based on the table number.
         OrderUtil.startOrder(tableNo);
-        gui.mainPanel.openPanel(new TakeOrderPanel());
+        gui.mainPanel.openTakeOrderPanel();
+    }
+
+    public void addItem(Item item) {
+
     }
 }

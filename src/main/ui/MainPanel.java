@@ -14,6 +14,7 @@ public class MainPanel extends JSplitPane {
     private final ButtonHandler buttonHandler;
     private JPanel topPanel;
     private JPanel bottomPanel;
+    private JSplitPane takeOrderPanel;
     private JLabel clock;
     private JButton takeOrder;
     private JButton currentOrders;
@@ -27,6 +28,7 @@ public class MainPanel extends JSplitPane {
      */
     public MainPanel(ButtonHandler buttonHandler) {
         this.buttonHandler = buttonHandler;
+        this.takeOrderPanel = new TakeOrderPanel(buttonHandler);
 
         clock = new JLabel();
         Timer timer = new Timer(1000, e -> clock.setText(new Date().toString()));
@@ -82,12 +84,11 @@ public class MainPanel extends JSplitPane {
     }
 
     /**
-     * Opens a given SplitPane on the main panel.
-     * @param panel to be opened.
+     * Opens a take order panel on the main panel.
      */
-    protected void openPanel(JSplitPane panel) {
-        panel.setBorder(new TitledBorder(new LineBorder(new Color(173, 216, 230), 5), "The Story Cafe"));
-        setTopComponent(panel);
+    protected void openTakeOrderPanel() {
+        takeOrderPanel.setBorder(new TitledBorder(new LineBorder(new Color(173, 216, 230), 5), "The Story Cafe"));
+        setTopComponent(takeOrderPanel);
         setDivider();
     }
 
