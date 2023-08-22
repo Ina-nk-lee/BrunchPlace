@@ -1,9 +1,6 @@
 package main.ui;
 
 import main.model.group.Menu;
-import main.model.single.App;
-import main.model.single.Drink;
-import main.model.single.Entree;
 import main.model.single.Item;
 
 import java.util.ArrayList;
@@ -53,35 +50,54 @@ public class MenuGetter {
     }
 
     /**
+     * Adds a new item with a given name and price to the appetizer menu.
+     * @param name of the new item
+     * @param price of the new item
+     */
+    private void addApp(String name, double price) {
+        Item item = new Item(name, price);
+        appsMenu.addItem(item);
+    }
+
+    /**
+     * Adds a new item with a given name and price to the entree menu.
+     * @param name of the new item
+     * @param price of the new item
+     */
+    private void addEntree(String name, double price) {
+        Item item = new Item(name, price);
+        entreeMenu.addItem(item);
+    }
+
+    /**
+     * Adds a new item with a given name and price to the drink menu.
+     * @param name of the new item
+     * @param price of the new item
+     */
+    private void addDrink(String name, double price) {
+        Item item = new Item(name, price);
+        drinkMenu.addItem(item);
+    }
+
+    /**
      * A setter for an appetizer menu.
      */
     private void setAppMenu() {
         appsMenu = new Menu("Appetizer");
 
-        Item truffleFries = new App("Truffle Fries", 8.5);
-        Item clamChowder = new App("Clam Chowder", 12.0);
-        Item beetSalad = new App("Beet Salad", 14.0);
+        addApp("Truffle Fries", 8.5);
+        addApp("Clam Chowder", 12.0);
+        addApp("Beet Salad", 14.0);
 
-        Item beefCarpaccio = new App("Beef Carpaccio", 19);
-        Item calamariFries = new App("Calamari Fries", 15.5);
-        Item hotWings = new App("Hot Wings", 12.5);
+        addApp("Beef Carpaccio", 19);
+        addApp("Calamari Fries", 15.5);
+        addApp("Hot Wings", 12.5);
 
-        Item shrimpCocktail = new App("Shrimp Cocktail", 11.0);
-        Item onionRings = new App("Onion Rings", 7.0);
-        Item freshOysters = new App("Fresh Oysters", 3);
+        addApp("Shrimp Cocktail", 11.0);
+        addApp("Onion Rings", 7.0);
+        addApp("Fresh Oysters", 3);
 
-        Item honeyMussels = new App("Honey Mussels", 23);
-
-        appsMenu.addItem(truffleFries);
-        appsMenu.addItem(clamChowder);
-        appsMenu.addItem(beetSalad);
-        appsMenu.addItem(beefCarpaccio);
-        appsMenu.addItem(calamariFries);
-        appsMenu.addItem(hotWings);
-        appsMenu.addItem(shrimpCocktail);
-        appsMenu.addItem(onionRings);
-        appsMenu.addItem(freshOysters);
-        appsMenu.addItem(honeyMussels);
+        addApp("Honey Mussels", 23);
     }
 
     /**
@@ -90,23 +106,15 @@ public class MenuGetter {
     private void setEntreeMenu() {
         entreeMenu = new Menu("Entree");
 
-        Item carbonara = new Entree("Carbonara", 19.5);
-        Item eggsBenedict = new Entree("Eggs Benedict", 21);
-        Item chickenFrenchToast = new Entree("Chicken Toast", 22);
+        addEntree("Carbonara", 19.5);
+        addEntree("Eggs Benedict", 21);
+        addEntree("Chicken Toast", 22);
 
-        Item avocadoToast = new Entree("Avocado Toast", 17);
-        Item eggInHell = new Entree("Egg In Hell", 18.5);
-        Item englishBreakfast = new Entree("English Breakfast", 14.5);
+        addEntree("Avocado Toast", 17);
+        addEntree("Egg In Hell", 18.5);
+        addEntree("English Breakfast", 14.5);
 
-        Item porkBellyPancakes = new Entree("Pancakes", 20.5);
-
-        entreeMenu.addItem(carbonara);
-        entreeMenu.addItem(eggsBenedict);
-        entreeMenu.addItem(chickenFrenchToast);
-        entreeMenu.addItem(avocadoToast);
-        entreeMenu.addItem(eggInHell);
-        entreeMenu.addItem(englishBreakfast);
-        entreeMenu.addItem(porkBellyPancakes);
+        addEntree("Pancakes", 20.5);
     }
 
     /**
@@ -115,13 +123,11 @@ public class MenuGetter {
     private void setDrinkMenu() {
         drinkMenu = new Menu("Drink");
 
-        Item lemonSour = new Drink("Lemon Sour", 11.0);
-        Item mimosa = new Drink("Mimosa", 10);
-        Item coffee = new Drink("Coffee", 4.5);
-
-        drinkMenu.addItem(lemonSour);
-        drinkMenu.addItem(mimosa);
-        drinkMenu.addItem(coffee);
+        addDrink("Coffee", 4.5);
+        addDrink("London Fog", 5.0);
+        addDrink("Earl Grey", 3.0);
+        addDrink("Honey Lemon Tea", 3.0);
+        addDrink("Orange Juice", 3.5);
     }
 
     /**
