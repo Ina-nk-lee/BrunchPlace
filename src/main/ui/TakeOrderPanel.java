@@ -2,6 +2,7 @@ package main.ui;
 
 import main.model.group.Menu;
 import main.model.single.Item;
+import main.model.util.OrderUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,10 +14,10 @@ import java.util.List;
  */
 public class TakeOrderPanel extends JSplitPane {
     private List<Menu> menus;
-    private JPanel listPanel;
+    private JPanel rightPanel;
     private JTabbedPane tabPanel;
-    private JScrollPane scrollPane;
-    private JPanel orderPane;
+    private JScrollPane cartPane;
+    private JPanel buttonPane;
     private ButtonHandler buttonHandler;
     private List<ItemButton> itemButtons;
     private final int DIVIDER_LOC = 480;
@@ -39,12 +40,12 @@ public class TakeOrderPanel extends JSplitPane {
      */
     private void setPanels() {
         setTabs();
-        setListPanel();
+        setRightPanel();
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setDividerLocation(DIVIDER_LOC);
         setLeftComponent(tabPanel);
-        setRightComponent(listPanel);
+        setRightComponent(rightPanel);
         setEnabled(false);
     }
 
@@ -107,26 +108,34 @@ public class TakeOrderPanel extends JSplitPane {
      * Sets a list panel, which shows all the items in the cart, and an order button.
      * Cart items in a JScrollPane are on the top, and the order button is at the bottom.
      */
-    private void setListPanel() {
-        listPanel = new JPanel();
-        listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
+    private void setRightPanel() {
+        rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 
-        scrollPane = new JScrollPane();
-        JTextArea cart = new JTextArea("Cart");
+        cartPane = new JScrollPane();
+        JTextArea cart = new JTextArea("");
         cart.setEditable(false);
-        scrollPane.setViewportView(cart);
-        scrollPane.setPreferredSize(new Dimension(500, 350));
+        cartPane.setViewportView(cart);
+        cartPane.setPreferredSize(new Dimension(500, 350));
+        cartPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        cartPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        orderPane = new JPanel();
-        orderPane.setLayout(new GridLayout(2, 1));
+        buttonPane = new JPanel();
+        buttonPane.setLayout(new GridLayout(2, 1));
 
         JButton backButton = new JButton("Back");
-        orderPane.add(backButton);
+        buttonPane.add(backButton);
 
         JButton orderButton = new JButton("Order");
-        orderPane.add(orderButton);
+        buttonPane.add(orderButton);
 
-        listPanel.add(scrollPane);
-        listPanel.add(orderPane);
+        rightPanel.add(cartPane);
+        rightPanel.add(buttonPane);
+    }
+
+    public void updateCart() {
+        JTextArea cart = (JTextArea) cartPane.getViewport().getView();
+        cart.setText(OrderUtil.getCart().toString());
+        System.out.println(OrderUtil.getCart().toString());
     }
 }

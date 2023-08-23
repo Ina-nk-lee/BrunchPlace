@@ -50,10 +50,19 @@ public class Item {
     }
 
     /**
+     * Compares this to other item and checks if they are same.
+     * @param other is another item to be compared
+     * @return true if same, false if different.
+     */
+    public boolean equals(Item other) {
+        return this.getName().equals(other.getName()) && this.getPrice() == other.getPrice();
+    }
+
+    /**
      * Converts the item's information to a string.
      * @return a string that contains the item's name and price.
      */
     public String toString() {
-        return this.getName() + " / " + this.getPrice();
+        return this.getName() + "\t" + this.getPrice();
     }
 }

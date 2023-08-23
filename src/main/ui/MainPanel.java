@@ -14,7 +14,7 @@ public class MainPanel extends JSplitPane {
     private final ButtonHandler buttonHandler;
     private JPanel topPanel;
     private JPanel bottomPanel;
-    private JSplitPane takeOrderPanel;
+    protected TakeOrderPanel takeOrderPanel;
     private JLabel clock;
     private JButton takeOrder;
     private JButton currentOrders;

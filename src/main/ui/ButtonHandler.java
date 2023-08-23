@@ -52,7 +52,11 @@ public class ButtonHandler {
      */
     public void addItemToCart(Item item) {
         int quantity = askNum("Enter a quantity:", 1);
+        if(quantity == -1) {
+            return;
+        }
         OrderUtil.addCartItem(item.getName(), quantity);
+        gui.mainPanel.takeOrderPanel.updateCart();
     }
 
     /**
@@ -75,10 +79,10 @@ public class ButtonHandler {
 
             //  Asks again if the user put an invalid input.
             try {
+                num = Integer.parseInt(input);
                 if(num < min) {
                     throw new NumberFormatException();
                 }
-                num = Integer.parseInt(input);
             } catch(NumberFormatException e) {
                 input = "";
             }

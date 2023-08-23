@@ -85,12 +85,17 @@ public class Order extends Group {
 
     //  Updates OrderList according to the items(ArrayList) to calculate the quantity of each item.
     private void updateOrderList() {
-        for(Item it : this) {
-            if(orderList.containsKey(it)) {
-                orderList.put(it, orderList.get(it) + 1);
-            } else {
-                orderList.put(it, 1);
+        numItems = 0;
+        for(Item curr : this) {
+            int count = 0;
+            for(Item other : this) {
+                if(curr.getName() == )
             }
+//            if(orderList.containsKey(it)) {
+//                orderList.replace(it, orderList.get(it) + 1);
+//            } else {
+//                orderList.put(it, 1);
+//            }
             numItems++;
         }
     }
@@ -100,22 +105,27 @@ public class Order extends Group {
         this.updateOrderList();
 
         StringBuilder result = new StringBuilder();
-        result.append("<").append(date).append(" / Table No: ").append(table).append(">").append("\n");
+        result.append("<").append(date).append(">")
+                .append("\nTable No: ").append(table).append("\n")
+                .append("------------------\n");
 
         //  toString each item with a quantity
         for (Map.Entry<Item, Integer> entry : orderList.entrySet()) {
             Item item = entry.getKey();
             int quantity = entry.getValue();
-            result.append(item.toString()).append(" / ").append(quantity).append("\n");
-        }
-
-        //  removes a new line at the end.
-        if(result.length() > 0) {
-            result.setLength(result.length() - 1);
+            result.append(item.toString())
+                    .append("\n\tx ").append(quantity).append("\n");
         }
 
         //  shows the total quantity of the items and the total price.
-        result.append("\nTotal ").append(numItems).append(" items.\nTotal: ").append(total);
+        result.append("------------------\n")
+                .append("Items: ").append("\t").append(numItems).append("\n")
+                .append("Total: ").append("\t").append(total);
+
+        //  removes a new line at the end.
+//        if(result.length() > 0) {
+//            result.setLength(result.length() - 1);
+//        }
 
         return result.toString();
     }
