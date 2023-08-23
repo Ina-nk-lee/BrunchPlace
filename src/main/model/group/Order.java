@@ -89,13 +89,11 @@ public class Order extends Group {
         for(Item curr : this) {
             int count = 0;
             for(Item other : this) {
-                if(curr.getName() == )
+                if(curr.equals(other)) {
+                    count++;
+                }
             }
-//            if(orderList.containsKey(it)) {
-//                orderList.replace(it, orderList.get(it) + 1);
-//            } else {
-//                orderList.put(it, 1);
-//            }
+            orderList.put(curr, count);
             numItems++;
         }
     }

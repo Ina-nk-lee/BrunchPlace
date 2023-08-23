@@ -133,9 +133,11 @@ public class TakeOrderPanel extends JSplitPane {
         rightPanel.add(buttonPane);
     }
 
+    /**
+     * Updates a cart pane to show items currently in the cart.
+     */
     public void updateCart() {
         JTextArea cart = (JTextArea) cartPane.getViewport().getView();
         cart.setText(OrderUtil.getCart().toString());
-        System.out.println(OrderUtil.getCart().toString());
     }
 }
