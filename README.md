@@ -1,5 +1,7 @@
 # BrunchPlace
 
+### Here is the jar file of the project you can simply open for your convenience [here](BrunchPlace.jar)!
+
 
 ### What will the application do?
   - This application is a personal project to create a POS system for a brunch restaurant.
@@ -10,10 +12,8 @@
         - It makes an order.
     - Pay
         - It pays the order.
-    - Manage Menu
-        - It adds an item to a menu, or remove one from a menu.
     - Records
-        - It shows orders that are completed.
+        - It shows orders.
         
  
 ### How the application flows.

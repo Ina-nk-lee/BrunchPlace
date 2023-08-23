@@ -63,6 +63,6 @@ public class Item {
      * @return a string that contains the item's name and price.
      */
     public String toString() {
-        return this.getName() + "\t" + this.getPrice();
+        return this.getName() + "\n\t" + this.getPrice();
     }
 }
