@@ -88,7 +88,7 @@ public class TakeOrderPanel extends JSplitPane {
 
             ItemButton button = new ItemButton(item);
             button.setPreferredSize(new Dimension(108, 150));
-            button.addActionListener(e -> buttonHandler.addItem(button.item));
+            button.addActionListener(e -> buttonHandler.addItemToCart(button.item));
             itemButtons.add(button);
             itemPanel.add(button, constraints);
 
@@ -115,10 +115,14 @@ public class TakeOrderPanel extends JSplitPane {
         JTextArea cart = new JTextArea("Cart");
         cart.setEditable(false);
         scrollPane.setViewportView(cart);
-        scrollPane.setPreferredSize(new Dimension(500, 5000));
+        scrollPane.setPreferredSize(new Dimension(500, 350));
 
         orderPane = new JPanel();
-        orderPane.setLayout(new GridLayout());
+        orderPane.setLayout(new GridLayout(2, 1));
+
+        JButton backButton = new JButton("Back");
+        orderPane.add(backButton);
+
         JButton orderButton = new JButton("Order");
         orderPane.add(orderButton);
 

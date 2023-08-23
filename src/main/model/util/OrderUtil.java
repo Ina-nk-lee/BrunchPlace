@@ -26,45 +26,57 @@ public class OrderUtil {
     }
 
     /**
-     * Creates a new order with a given table number.
+     * Creates a new cart with a given table number.
      * @param tableNum is the table number of the new order.
      */
-    public static void startOrder(int tableNum) {
+    public static void newCart(int tableNum) {
         order = new Order(tableNum);
     }
 
     /**
-     * Adds an item to a current order.
+     * Adds an item to a cart.
      * Does nothing if there is no such item in the menu.
      * @param itemName is the name of the item to add.
      */
-    public static void addItem(String itemName) {
+    public static void addCartItem(String itemName, int quantity) {
         Item newItem;
         for(Menu menu : menus) {
             newItem = menu.getItem(itemName);
             if(newItem != null) {
-                order.addItem(newItem);
+                for(int i = 0; i < quantity; i++) {
+                    order.addItem(newItem);
+                }
             }
         }
     }
 
     /**
-     * Removes an item to a current order.
+     * Removes an item to a cart.
      * Does nothing if there is no such item in the menu.
      * @param itemName is the name of the item to remove.
      */
-    public static void removeItem(String itemName) {
+    public static void removeCartItem(String itemName, int quantity) {
         Item newItem;
         for(Menu menu : menus) {
             newItem = menu.getItem(itemName);
             if(newItem != null) {
-                order.removeItem(newItem);
+                for(int i = 0; i < quantity; i++) {
+                    order.removeItem(newItem);
+                }
             }
         }
     }
 
     /**
-     * Makes an order by moving the current order to order records.
+     * Clears the cart.
+     */
+    public static void clearCart() {
+        order = null;
+    }
+
+    /**
+     * Makes an order.
+     * The order made moves to the order records.
      */
     public static void makeOrder() {
         if(order.numItem() != 0) {
@@ -88,8 +100,8 @@ public class OrderUtil {
     }
 
     /**
-     * Checks if OrderUtil is empty.
-     * @return true if OrderUtil does NOT have an order, false if it has an ongoing one.
+     * Checks if the cart is empty.
+     * @return true if cart is empty, false if it has an ongoing one.
      */
     public static boolean isEmpty() {
         return order == null;
@@ -99,7 +111,7 @@ public class OrderUtil {
      * A getter for the ongoing, unpaid order.
      * @return Order that is an ongoing, unpaid one.
      */
-    public static Order getOrder() {
+    public static Order getCart() {
         return order;
     }
 

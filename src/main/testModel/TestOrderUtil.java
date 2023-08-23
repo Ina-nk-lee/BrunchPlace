@@ -31,44 +31,44 @@ public class TestOrderUtil {
         testMenu.addItem(itemB);
 
         OrderUtil.initUtil(testMenuList);
-        OrderUtil.startOrder(1);
+        OrderUtil.newCart(1);
     }
 
     @Test
     void testStartOrder() {
-        assertEquals(1, OrderUtil.getOrder().getTable());
+        assertEquals(1, OrderUtil.getCart().getTable());
     }
 
     @Test
     void testAddItem() {
-        OrderUtil.addItem("a");
+        OrderUtil.addCartItem("a", 1);
         assertEquals(2, testMenu.numItem());
-        assertEquals(10, OrderUtil.getOrder().getTotal());
-        OrderUtil.removeItem("a");
+        assertEquals(10, OrderUtil.getCart().getTotal());
+        OrderUtil.removeCartItem("a", 1);
     }
 
     @Test
     void testRemoveItem() {
-        OrderUtil.addItem("a");
-        assertEquals(10, OrderUtil.getOrder().getTotal());
+        OrderUtil.addCartItem("a", 1);
+        assertEquals(10, OrderUtil.getCart().getTotal());
 
-        OrderUtil.removeItem("a");
-        assertEquals(0, OrderUtil.getOrder().getTotal());
+        OrderUtil.removeCartItem("a", 1);
+        assertEquals(0, OrderUtil.getCart().getTotal());
     }
 
     @Test
     void testMakeOrder() {
-        OrderUtil.addItem("a");
+        OrderUtil.addCartItem("a", 1);
         OrderUtil.makeOrder();
 
-        assertNull(OrderUtil.getOrder());
+        assertNull(OrderUtil.getCart());
         assertEquals(1, OrderUtil.getCurrentOrders().numItems());
         assertTrue(OrderUtil.isEmpty());
     }
 
     @Test
     void testPayOrder() {
-        OrderUtil.addItem("a");
+        OrderUtil.addCartItem("a", 1);
         OrderUtil.makeOrder();
         OrderUtil.payOrder(1);
 

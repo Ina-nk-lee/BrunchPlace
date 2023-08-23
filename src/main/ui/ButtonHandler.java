@@ -35,14 +35,14 @@ public class ButtonHandler {
         int tableNo = 0;
 
         if(option == 1) {
-            tableNo = askNum("Enter a table number.");
+            tableNo = askNum("Enter a table number.", 0);
             if(tableNo == -1) {
                 return;
             }
         }
 
         //  Takes an order based on the table number.
-        OrderUtil.startOrder(tableNo);
+        OrderUtil.newCart(tableNo);
         gui.mainPanel.openTakeOrderPanel();
     }
 
@@ -50,30 +50,34 @@ public class ButtonHandler {
      * Adds an item to the cart based on the user input.
      * @param item to be added.
      */
-    public void addItem(Item item) {
-        int quantity = askNum("Enter a quantity:");
+    public void addItemToCart(Item item) {
+        int quantity = askNum("Enter a quantity:", 1);
+        OrderUtil.addCartItem(item.getName(), quantity);
     }
 
     /**
-     * Asks for a user input in integer.
-     * Asks again if the input is invalid (not integer).
+     * A helper method to ask for a user input in integer.
+     * Asks again if the input is invalid; e.g. non-integer or less than min.
      * @param question to ask the user.
      * @return the user integer input.
      */
-    private int askNum(String question) {
+    private int askNum(String question, int min) {
         String input = "";
         int num = 0;
 
         while(input.equals("")) {
             input = JOptionPane.showInputDialog(new JFrame(), question);
 
-            //  If the user put nothing.
+            //  If the user put nothing, return -1.
             if(input == null) {
                 return -1;
             }
 
             //  Asks again if the user put an invalid input.
             try {
+                if(num < min) {
+                    throw new NumberFormatException();
+                }
                 num = Integer.parseInt(input);
             } catch(NumberFormatException e) {
                 input = "";
