@@ -129,6 +129,7 @@ public class TakeOrderPanel extends JSplitPane {
 
         JButton orderButton = new JButton("Order");
         buttonPane.add(orderButton);
+        orderButton.addActionListener(e -> buttonHandler.makeOrder());
 
         rightPanel.add(cartPane);
         rightPanel.add(buttonPane);

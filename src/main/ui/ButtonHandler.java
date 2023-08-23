@@ -101,7 +101,13 @@ public class ButtonHandler {
         gui.mainPanel.takeOrderPanel.updateCart();
     }
 
+    /**
+     * Make an order.
+     * It goes back to the main menu.
+     */
     public void makeOrder() {
-
+        OrderUtil.makeOrder();
+        JOptionPane.showMessageDialog(new JFrame(), "Order Completed.");
+        openMainMenu();
     }
 }
