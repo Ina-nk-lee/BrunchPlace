@@ -32,24 +32,12 @@ public class ButtonHandler {
                 "Take out or Dine-in?",
                 "Question", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 
-        String input = "";
         int tableNo = 0;
 
         if(option == 1) {
-            while(input.equals("")) {
-                input = JOptionPane.showInputDialog(new JFrame(), "Enter a table number.");
-
-                //  Goes back if the user put nothing.
-                if(input == null) {
-                    return;
-                }
-
-                //  Asks again if the user put an invalid input.
-                try {
-                    tableNo = Integer.parseInt(input);
-                } catch(NumberFormatException e) {
-                    input = "";
-                }
+            tableNo = askNum("Enter a table number.");
+            if(tableNo == -1) {
+                return;
             }
         }
 
@@ -58,7 +46,40 @@ public class ButtonHandler {
         gui.mainPanel.openTakeOrderPanel();
     }
 
+    /**
+     * Adds an item to the cart based on the user input.
+     * @param item to be added.
+     */
     public void addItem(Item item) {
+        int quantity = askNum("Enter a quantity:");
+    }
 
+    /**
+     * Asks for a user input in integer.
+     * Asks again if the input is invalid (not integer).
+     * @param question to ask the user.
+     * @return the user integer input.
+     */
+    private int askNum(String question) {
+        String input = "";
+        int num = 0;
+
+        while(input.equals("")) {
+            input = JOptionPane.showInputDialog(new JFrame(), question);
+
+            //  If the user put nothing.
+            if(input == null) {
+                return -1;
+            }
+
+            //  Asks again if the user put an invalid input.
+            try {
+                num = Integer.parseInt(input);
+            } catch(NumberFormatException e) {
+                input = "";
+            }
+        }
+
+        return num;
     }
 }
