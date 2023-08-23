@@ -90,4 +90,18 @@ public class ButtonHandler {
 
         return num;
     }
+
+    /**
+     * Opens a main menu.
+     * It clears the cart.
+     */
+    public void openMainMenu() {
+        gui.mainPanel.openMainMenu();
+        OrderUtil.clearCart();
+        gui.mainPanel.takeOrderPanel.updateCart();
+    }
+
+    public void makeOrder() {
+
+    }
 }
