@@ -2,6 +2,7 @@ package main.ui;
 
 import main.model.group.Menu;
 import main.model.single.Item;
+import main.model.util.MenuUtil;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ public class ButtonHandler {
      * Creates a ButtonHandler with a given food menu.
      */
     public ButtonHandler(GUI gui) {
-        this.menus = MenuGetter.getInstance().getMenus();
+        this.menus = MenuUtil.getInstance().getMenus();
         this.gui = gui;
     }
 

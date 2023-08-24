@@ -1,9 +1,11 @@
 package main.ui;
 
+import main.model.group.Group;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 /**
  * This class represents a pane that shows current unpaid orders.
@@ -44,6 +46,8 @@ public class CurrentOrdersPane extends JSplitPane {
     private void setOrderPane() {
         orderPane = new JScrollPane();
 
+        JList<String> list = setJList();
+
         currentOrders = new JTextArea("");
         loadCurrOrders();
         currentOrders.setEditable(false);
@@ -83,5 +87,19 @@ public class CurrentOrdersPane extends JSplitPane {
         } else {
             currentOrders.setText(OrderUtil.getCurrentOrders().toString());
         }
+    }
+
+    private JList<String> setJList() {
+        List<Group> orderList = OrderUtil.getCurrentOrders().getList();
+        String[] arr = new String[orderList.size()];
+
+        for(int i = 0; i < orderList.size(); i++) {
+            arr[i] = orderList.get(i).toString();
+        }
+
+        JList<String> jList = new JList<>(arr);
+        jList.setLayoutOrientation(JList.VERTICAL);
+
+        return jList;
     }
 }

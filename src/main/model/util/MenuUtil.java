@@ -1,4 +1,4 @@
-package main.ui;
+package main.model.util;
 
 import main.model.group.Menu;
 import main.model.single.Item;
@@ -10,17 +10,17 @@ import java.util.List;
  * This class gets a preset menu using a Singleton pattern.
  * Food items can be added by manually editing setMenus in this class.
  */
-public class MenuGetter {
+public class MenuUtil {
     private List<Menu> menus;
     private Menu appsMenu;
     private Menu entreeMenu;
     private Menu drinkMenu;
-    private static MenuGetter menuGetter;
+    private static MenuUtil menuUtil;
 
     /**
      * Creates a menu and a MenuGetter.
      */
-    private MenuGetter() {
+    private MenuUtil() {
         menus = new ArrayList<>();
         setMenus();
     }
@@ -29,11 +29,11 @@ public class MenuGetter {
      * A getter of a singular MenuGetter instance (Singleton pattern).
      * @return a singular MenuGetter instance.
      */
-    public static MenuGetter getInstance() {
-        if (menuGetter == null) {
-            menuGetter = new MenuGetter();
+    public static MenuUtil getInstance() {
+        if (menuUtil == null) {
+            menuUtil = new MenuUtil();
         }
-        return menuGetter;
+        return menuUtil;
     }
 
     /**

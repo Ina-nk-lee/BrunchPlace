@@ -2,6 +2,7 @@ package main.ui;
 
 import main.model.group.Menu;
 import main.model.single.Item;
+import main.model.util.MenuUtil;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
@@ -27,7 +28,7 @@ public class TakeOrderPane extends JSplitPane {
      * It takes order based on a menu from MenuGetter.java, which uses a singleton pattern.
      */
     public TakeOrderPane(ButtonHandler buttonHandler) {
-        this.menus = MenuGetter.getInstance().getMenus();
+        this.menus = MenuUtil.getInstance().getMenus();
         this.itemButtons = new ArrayList<>();
         this.buttonHandler = buttonHandler;
 

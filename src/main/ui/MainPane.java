@@ -10,7 +10,7 @@ import java.util.Date;
  * This class is a main panel of BrunchPlace.
  * The user can take an order, pay, and see a list of current orders.
  */
-public class MainPanel extends JSplitPane {
+public class MainPane extends JSplitPane {
     private final ButtonHandler buttonHandler;
     private JPanel topPanel;
     private JPanel bottomPanel;
@@ -28,7 +28,7 @@ public class MainPanel extends JSplitPane {
      * It also includes a clock on the bottom.
      * @param buttonHandler is a handler for button click events.
      */
-    public MainPanel(ButtonHandler buttonHandler) {
+    public MainPane(ButtonHandler buttonHandler) {
         this.buttonHandler = buttonHandler;
         this.borderColor = new Color(173, 216, 230); // sky-blue color
 

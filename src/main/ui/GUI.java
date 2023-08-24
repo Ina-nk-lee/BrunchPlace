@@ -1,6 +1,7 @@
 package main.ui;
 
 import main.model.group.Menu;
+import main.model.util.MenuUtil;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class GUI extends JFrame {
     private List<Menu> menus;
-    protected MainPanel mainPane;
+    protected MainPane mainPane;
     private ButtonHandler buttonHandler;
     private JLabel clock;
     private Timer timer;
@@ -24,10 +25,10 @@ public class GUI extends JFrame {
      */
     public GUI() {
         super("The Story Cafe");
-        this.menus = MenuGetter.getInstance().getMenus();
+        this.menus = MenuUtil.getInstance().getMenus();
         OrderUtil.initUtil(menus);
         this.buttonHandler = new ButtonHandler(this);
-        mainPane = new MainPanel(buttonHandler);
+        mainPane = new MainPane(buttonHandler);
 
         add(mainPane);
         setWindowLoc();
