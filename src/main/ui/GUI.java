@@ -5,8 +5,6 @@ import main.model.util.OrderUtil;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,7 +20,7 @@ public class GUI extends JFrame {
     public static final int WINDOW_HEIGHT = 550;
 
     /**
-     * Creates a GUI by setting its window and panels.
+     * Creates a GUI by setting its window and panes.
      */
     public GUI() {
         super("The Story Cafe");
@@ -30,11 +28,6 @@ public class GUI extends JFrame {
         OrderUtil.initUtil(menus);
         this.buttonHandler = new ButtonHandler(this);
         mainPane = new MainPanel(buttonHandler);
-
-        clock = new JLabel(new Date().toString());
-        ActionListener updateClock = e -> clock.setText(new Date().toString());
-        timer = new Timer(1000, updateClock);
-        timer.start();
 
         add(mainPane);
         setWindowLoc();
