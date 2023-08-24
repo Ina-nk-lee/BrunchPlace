@@ -35,6 +35,7 @@ public class GUI extends JFrame {
 
         setResizable(false);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**

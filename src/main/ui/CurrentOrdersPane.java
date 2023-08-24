@@ -1,6 +1,7 @@
 package main.ui;
 
 import main.model.group.Group;
+import main.model.group.Order;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
@@ -15,7 +16,8 @@ public class CurrentOrdersPane extends JSplitPane {
     private final int DIVIDER_LOC = 480;
     private JScrollPane orderPane;
     private JPanel buttonPane;
-    JTextArea currentOrders;
+    JTextArea emptyText;
+    JList<Order> orderList;
 
     /**
      * Creates a current orders pane.
@@ -46,13 +48,11 @@ public class CurrentOrdersPane extends JSplitPane {
     private void setOrderPane() {
         orderPane = new JScrollPane();
 
-        JList<String> list = setJList();
-
-        currentOrders = new JTextArea("");
+//        currentOrders = new JTextArea("");
+//        loadCurrOrders();
+//        currentOrders.setEditable(false);
+        emptyText = new JTextArea();
         loadCurrOrders();
-        currentOrders.setEditable(false);
-
-        orderPane.setViewportView(currentOrders);
         orderPane.setPreferredSize(new Dimension(500, 350));
         orderPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         orderPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -83,23 +83,45 @@ public class CurrentOrdersPane extends JSplitPane {
      */
     protected void loadCurrOrders() {
         if(OrderUtil.getCurrentOrders().numOrders() == 0) {
-            currentOrders.setText("There is no current order.");
+            emptyText.setText("There is no current order.");
+            orderPane.setViewportView(emptyText);
         } else {
-            currentOrders.setText(OrderUtil.getCurrentOrders().toString());
+            setOrderList();
+            orderPane.setViewportView(orderList);
         }
     }
 
-    private JList<String> setJList() {
-        List<Group> orderList = OrderUtil.getCurrentOrders().getList();
-        String[] arr = new String[orderList.size()];
+    private void setOrderList() {
+        List<Group> orders = OrderUtil.getCurrentOrders().getList();
+        Order[] arr = new Order[orders.size()];
 
-        for(int i = 0; i < orderList.size(); i++) {
-            arr[i] = orderList.get(i).toString();
+        for (int i = 0; i < orders.size(); i++) {
+            arr[i] = (Order) orders.get(i);
         }
 
-        JList<String> jList = new JList<>(arr);
-        jList.setLayoutOrientation(JList.VERTICAL);
+        orderList = new JList<>(arr);
+        orderList.setCellRenderer(new jListCellRenderer());
+        orderList.setLayoutOrientation(JList.VERTICAL);
+        orderList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
 
-        return jList;
+    private class jListCellRenderer extends DefaultListCellRenderer {
+
+        @Override
+        public Component getListCellRendererComponent(
+                JList list, Object value, int index,
+                boolean isSelected, boolean cellHasFocus) {
+            super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            Order order = (Order) value;
+            // &lt; is "<", and &nbsp; is a tab in HTML.
+//            String labelText = "<html> &lt;" + order.getDate().toString() + "><br>" +
+//                    "Table No: &nbsp;&nbsp;" + order.getTable() + "<br>" +
+//                    "------------------" + "<br>";
+            String labelText = order.toString();
+            setText(labelText);
+
+            return this;
+        }
+
     }
 }

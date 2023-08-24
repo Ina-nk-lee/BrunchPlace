@@ -20,7 +20,7 @@ public class Order extends Group {
     private final double TAX_PERCENT = 0.12;
     private boolean isOrdered;
     private boolean isPaid;
-    private Map<Item, Integer> orderList;
+    public Map<Item, Integer> orderList;
 
     /**
      * Creates an order with a given table number and a local date.
@@ -158,6 +158,15 @@ public class Order extends Group {
     }
 
     /**
+     * Gets the orderList(Map) of this order.
+     * @return the orderList of this order.
+     */
+    public Map<Item, Integer> getOrderList() {
+        updateOrderList();
+        return orderList;
+    }
+
+    /**
      * Updates OrderList according to the items(ArrayList) to count the quantity of each item and all the items.
      */
     private void updateOrderList() {
@@ -183,8 +192,9 @@ public class Order extends Group {
         this.updateOrderList();
 
         StringBuilder result = new StringBuilder();
-        result.append("<").append(date).append(">")
-                .append("\nTable No: ").append(table).append("\n")
+        // &lt; is "<", and &nbsp; is a tab in HTML.
+        result.append("<html> &lt;").append(date).append(">/br")
+                .append("\nTable No: ").append(table).append("/br")
                 .append("------------------\n");
 
         //  toString each item with a quantity
