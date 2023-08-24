@@ -58,12 +58,11 @@ public class CurrentOrdersPane extends JSplitPane {
         rightPane.add(buttonPane);
     }
 
-    private void loadRecords() {
-        if(OrderUtil.getOrderRecords().numItems() == 0) {
+    protected void loadRecords() {
+        if(OrderUtil.getCurrentOrders().numOrders() == 0) {
             currentOrders.setText("There is no order.");
         } else {
             currentOrders.setText(OrderUtil.getCurrentOrders().toString());
-
         }
     }
 }
