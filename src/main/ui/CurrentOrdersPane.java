@@ -5,60 +5,79 @@ import main.model.util.OrderUtil;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class represents a pane that shows current unpaid orders.
+ */
 public class CurrentOrdersPane extends JSplitPane {
     private ButtonHandler buttonHandler;
     private final int DIVIDER_LOC = 480;
-    private JScrollPane recordPane;
-    private JPanel rightPane;
+    private JScrollPane orderPane;
+    private JPanel buttonPane;
     JTextArea currentOrders;
 
+    /**
+     * Creates a current orders pane.
+     * @param buttonHandler to handle button click events.
+     */
     public CurrentOrdersPane(ButtonHandler buttonHandler) {
         this.buttonHandler = buttonHandler;
         setPanes();
     }
 
+    /**
+     * Sets this pane to be horizontally split into two panes: a record pane and a pane with a button.
+     */
     private void setPanes() {
-        setRecordPane();
-        setRightPane();
+        setOrderPane();
+        setButtonPane();
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setDividerLocation(DIVIDER_LOC);
-        setLeftComponent(recordPane);
-        setRightComponent(rightPane);
+        setLeftComponent(orderPane);
+        setRightComponent(buttonPane);
         setEnabled(false);
     }
 
-    private void setRecordPane() {
-        recordPane = new JScrollPane();
+    /**
+     * Sets a scrollable order pane that shows current unpaid orders.
+     */
+    private void setOrderPane() {
+        orderPane = new JScrollPane();
 
         currentOrders = new JTextArea("");
-        loadRecords();
+        loadCurrOrders();
         currentOrders.setEditable(false);
 
-        recordPane.setViewportView(currentOrders);
-        recordPane.setPreferredSize(new Dimension(500, 350));
-        recordPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        recordPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        orderPane.setViewportView(currentOrders);
+        orderPane.setPreferredSize(new Dimension(500, 350));
+        orderPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        orderPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     }
 
-    private void setRightPane() {
-        rightPane = new JPanel();
-        rightPane.setLayout(new BoxLayout(rightPane, BoxLayout.Y_AXIS));
+    /**
+     * Sets a button pane that has a back button.
+     */
+    private void setButtonPane() {
+        buttonPane = new JPanel();
+        buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.Y_AXIS));
 
-        JPanel emptyPane = new JPanel();
-        emptyPane.setPreferredSize(new Dimension(500, 400));
+        JPanel emptySpace = new JPanel();
+        emptySpace.setPreferredSize(new Dimension(500, 400));
 
-        JPanel buttonPane = new JPanel();
-        buttonPane.setLayout(new GridLayout());
+        JPanel buttonSpace = new JPanel();
+        buttonSpace.setLayout(new GridLayout());
         JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> buttonHandler.openMainMenu());
-        buttonPane.add(backButton);
+        buttonSpace.add(backButton);
 
-        rightPane.add(emptyPane);
-        rightPane.add(buttonPane);
+        this.buttonPane.add(emptySpace);
+        this.buttonPane.add(buttonSpace);
     }
 
-    protected void loadRecords() {
+    /**
+     * Loads most current unpaid orders to an order pane.
+     */
+    protected void loadCurrOrders() {
         if(OrderUtil.getCurrentOrders().numOrders() == 0) {
             currentOrders.setText("There is no current order.");
         } else {
