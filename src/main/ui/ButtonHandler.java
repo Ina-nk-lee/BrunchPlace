@@ -23,9 +23,20 @@ public class ButtonHandler {
     }
 
     /**
-     * Gives two options -- take-out or dine-in -- to the user and takes an order based on the user input.
+     * Opens a main menu.
+     * It clears the cart.
      */
-    public void takeOrder() {
+    protected void openMainMenu() {
+        gui.mainPane.openMainMenu();
+        OrderUtil.clearCart();
+        gui.mainPane.takeOrderPane.updateCart();
+    }
+
+    /**
+     * Takes an order from the user.
+     * Gives two options -- take-out or dine-in -- and takes an order based on the user input.
+     */
+    protected void takeOrder() {
         //  Shows two options: take-out and dine-in.
         Object[] options = {"Take out", "Dine-in"};
         int option = JOptionPane.showOptionDialog(new JFrame(),
@@ -43,20 +54,27 @@ public class ButtonHandler {
 
         //  Takes an order based on the table number.
         OrderUtil.newCart(tableNo);
-        gui.mainPanel.openTakeOrderPanel();
+        gui.mainPane.openTakeOrderPanel();
+    }
+
+    /**
+     * Shows current orders.
+     */
+    protected void showCurrOrders() {
+        gui.mainPane.openCurrentOrderPane();
     }
 
     /**
      * Adds an item to the cart based on the user input.
      * @param item to be added.
      */
-    public void addItemToCart(Item item) {
+    protected void addItemToCart(Item item) {
         int quantity = askNum("Enter a quantity:", 1);
         if(quantity == -1) {
             return;
         }
         OrderUtil.addCartItem(item.getName(), quantity);
-        gui.mainPanel.takeOrderPanel.updateCart();
+        gui.mainPane.takeOrderPane.updateCart();
     }
 
     /**
@@ -65,7 +83,7 @@ public class ButtonHandler {
      * @param question to ask the user.
      * @return the user integer input.
      */
-    private int askNum(String question, int min) {
+    protected int askNum(String question, int min) {
         String input = "";
         int num = 0;
 
@@ -92,20 +110,10 @@ public class ButtonHandler {
     }
 
     /**
-     * Opens a main menu.
-     * It clears the cart.
-     */
-    public void openMainMenu() {
-        gui.mainPanel.openMainMenu();
-        OrderUtil.clearCart();
-        gui.mainPanel.takeOrderPanel.updateCart();
-    }
-
-    /**
      * Make an order.
      * It goes back to the main menu.
      */
-    public void makeOrder() {
+    protected void makeOrder() {
         OrderUtil.makeOrder();
         JOptionPane.showMessageDialog(new JFrame(), "Order Completed.");
         openMainMenu();

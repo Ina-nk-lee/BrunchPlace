@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * This class represents a pane used for taking orders.
  */
-public class TakeOrderPanel extends JSplitPane {
+public class TakeOrderPane extends JSplitPane {
     private List<Menu> menus;
     private JPanel rightPanel;
     private JTabbedPane tabPanel;
@@ -26,7 +26,7 @@ public class TakeOrderPanel extends JSplitPane {
      * Creates a panel for taking orders.
      * It takes order based on a menu from MenuGetter.java, which uses a singleton pattern.
      */
-    public TakeOrderPanel(ButtonHandler buttonHandler) {
+    public TakeOrderPane(ButtonHandler buttonHandler) {
         this.menus = MenuGetter.getInstance().getMenus();
         this.itemButtons = new ArrayList<>();
         this.buttonHandler = buttonHandler;
@@ -40,7 +40,7 @@ public class TakeOrderPanel extends JSplitPane {
      */
     private void setPanels() {
         setTabs();
-        setRightPanel();
+        setRightPane();
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setDividerLocation(DIVIDER_LOC);
@@ -106,7 +106,7 @@ public class TakeOrderPanel extends JSplitPane {
      * Sets a list panel, which shows all the items in the cart, and an order button.
      * Cart items in a JScrollPane are on the top, and the order button is at the bottom.
      */
-    private void setRightPanel() {
+    private void setRightPane() {
         rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 

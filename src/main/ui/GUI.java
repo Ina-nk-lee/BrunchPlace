@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class GUI extends JFrame {
     private List<Menu> menus;
-    protected MainPanel mainPanel;
+    protected MainPanel mainPane;
     private ButtonHandler buttonHandler;
     private JLabel clock;
     private Timer timer;
@@ -29,14 +29,14 @@ public class GUI extends JFrame {
         this.menus = MenuGetter.getInstance().getMenus();
         OrderUtil.initUtil(menus);
         this.buttonHandler = new ButtonHandler(this);
-        mainPanel = new MainPanel(buttonHandler);
+        mainPane = new MainPanel(buttonHandler);
 
         clock = new JLabel(new Date().toString());
         ActionListener updateClock = e -> clock.setText(new Date().toString());
         timer = new Timer(1000, updateClock);
         timer.start();
 
-        add(mainPanel);
+        add(mainPane);
         setWindowLoc();
 
         setResizable(false);
