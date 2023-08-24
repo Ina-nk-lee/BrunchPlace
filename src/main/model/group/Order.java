@@ -2,6 +2,8 @@ package main.model.group;
 
 import main.model.single.Item;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +14,10 @@ import java.util.Map;
 public class Order extends Group {
     private LocalDate date;
     private double total;
+    private double tax;
     private int table;
     private int numItems;
+    private final double TAX_PERCENT = 0.12;
     private boolean isOrdered;
     private boolean isPaid;
     private Map<Item, Integer> orderList;
@@ -27,6 +31,7 @@ public class Order extends Group {
         super();
         date = LocalDate.now();
         total = 0;
+        tax = 0;
         table = tableNo;
         numItems = 0;
         isOrdered = false;
@@ -41,6 +46,7 @@ public class Order extends Group {
     public void addItem(Item item) {
         super.addItem(item);
         total += item.getPrice();
+        tax = total * TAX_PERCENT;
     }
 
     /**
@@ -50,6 +56,7 @@ public class Order extends Group {
     public void removeItem(Item item) {
         super.removeItem(item);
         total -= item.getPrice();
+        tax = total * TAX_PERCENT;
     }
 
     /**
@@ -82,6 +89,17 @@ public class Order extends Group {
      */
     public double getTotal() {
         return total;
+    }
+
+    /**
+     * Gets the tax of the total amount of the order.
+     * It rounds off the tax to the third decimal point.
+     * @return the tax amount of the order.
+     */
+    public double getTax() {
+        BigDecimal bigDecimal = new BigDecimal(tax);
+        bigDecimal = bigDecimal.setScale(3, RoundingMode.HALF_UP);
+        return bigDecimal.doubleValue();
     }
 
     /**
@@ -179,8 +197,10 @@ public class Order extends Group {
 
         //  shows the total quantity of the items and the total price.
         result.append("------------------\n")
-                .append("Items: ").append("\t").append(numItems).append("\n")
-                .append("Total: ").append("\t$").append(total);
+                .append("Items:").append("\t").append(numItems).append("\n")
+                .append("Subtotal:").append("\t$").append(getTotal()).append("\n")
+                .append("GST + PST:").append("\t$  ").append(getTax()).append("\n")
+                .append("Total: ").append("\t$").append(getTotal() + getTax()).append("\n");
 
         //  removes a new line at the end.
 //        if(result.length() > 0) {
