@@ -180,7 +180,7 @@ public class Order extends Group {
         //  shows the total quantity of the items and the total price.
         result.append("------------------\n")
                 .append("Items: ").append("\t").append(numItems).append("\n")
-                .append("Total: ").append("\t").append(total);
+                .append("Total: ").append("\t$").append(total);
 
         //  removes a new line at the end.
 //        if(result.length() > 0) {
