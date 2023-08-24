@@ -71,10 +71,6 @@ public class TakeOrderPanel extends JSplitPane {
         JPanel itemPanel = new JPanel();
         itemPanel.setLayout(new GridBagLayout());
 
-        JScrollPane menuPane = new JScrollPane(itemPanel);
-        menuPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        menuPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
         int x = 0;
         int y = 0;
 
@@ -98,6 +94,10 @@ public class TakeOrderPanel extends JSplitPane {
 
             x++;
         }
+
+        JScrollPane menuPane = new JScrollPane(itemPanel);
+        menuPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        menuPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         return menuPane;
     }

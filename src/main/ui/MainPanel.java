@@ -92,6 +92,10 @@ public class MainPanel extends JSplitPane {
         setDivider();
     }
 
+    protected void openCurrentOrderPanel() {
+
+    }
+
     /**
      * Sets a divider at a default location.
      */

@@ -13,7 +13,7 @@ public class ItemButton extends JButton {
         super("<html>" + item.getName() + "<br>$" + item.getPrice() + "</html>");
         this.item = item;
         this.buttonHandler = buttonHandler;
-        this.setPreferredSize(new Dimension(108, 150));
+        this.setPreferredSize(new Dimension(108, 140));
         this.addActionListener(e -> buttonHandler.addItemToCart(this.item));
     }
 }
