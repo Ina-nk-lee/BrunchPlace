@@ -17,6 +17,7 @@ public class MainPane extends JSplitPane {
     protected TakeOrderPane takeOrderPane;
     protected CurrentOrdersPane currOrdersPane;
     protected PayPane payPane;
+    protected OrderHistoryPane orderHistoryPane;
     private JLabel clock;
     private JButton takeOrder;
     private JButton currentOrders;
@@ -47,10 +48,8 @@ public class MainPane extends JSplitPane {
      * The top pane includes menu options, and the bottom pane includes a clock.
      */
     private void setPanes() {
-        GridLayout layout = new GridLayout(2,2);
-
         topPanel = new JPanel();
-        topPanel.setLayout(layout);
+        topPanel.setLayout(new GridLayout(2,2));
         setupBorder(topPanel);
 
         topPanel.add(takeOrder);
@@ -61,6 +60,7 @@ public class MainPane extends JSplitPane {
         takeOrderPane = new TakeOrderPane(buttonHandler);
         currOrdersPane = new CurrentOrdersPane(buttonHandler);
         payPane = new PayPane(buttonHandler);
+        orderHistoryPane = new OrderHistoryPane(buttonHandler);
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -84,6 +84,7 @@ public class MainPane extends JSplitPane {
         takeOrder.addActionListener(e -> buttonHandler.openTakeOrder());
         currentOrders.addActionListener(e -> buttonHandler.openCurrOrders());
         pay.addActionListener(e -> buttonHandler.openPay());
+        orderHistory.addActionListener(e -> buttonHandler.openOrderHistory());
     }
 
     /**
@@ -118,6 +119,15 @@ public class MainPane extends JSplitPane {
     protected void openPayPane() {
         setupBorder(payPane);
         setTopComponent(payPane);
+        setDivider();
+    }
+
+    /**
+     * Opens an order history pane on the main panel.
+     */
+    protected void openOrderHistoryPane() {
+        setupBorder(orderHistoryPane);
+        setTopComponent(orderHistoryPane);
         setDivider();
     }
 

@@ -17,7 +17,7 @@ public class CurrentOrdersPane extends JSplitPane {
     protected final int DIVIDER_LOC = 480;
     protected JScrollPane orderPane;
     protected JPanel buttonPane;
-    private JTextArea emptyCartText;
+    protected JTextArea emptyCartText;
     protected JList<Order> orderJList;
 
     /**
@@ -51,7 +51,7 @@ public class CurrentOrdersPane extends JSplitPane {
         emptyCartText = new JTextArea();
 
         setOrderJList();
-        showCurrOrders();
+        showOrders();
 
         orderPane.setPreferredSize(new Dimension(500, 350));
         orderPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -90,9 +90,9 @@ public class CurrentOrdersPane extends JSplitPane {
     }
 
     /**
-     * Shows current unpaid orders to an order pane.
+     * Shows unpaid orders to an order pane.
      */
-    protected void showCurrOrders() {
+    protected void showOrders() {
         if(OrderUtil.getCurrentOrders().numOrders() == 0) {
             emptyCartText.setText("There is no current order.");
             orderPane.setViewportView(emptyCartText);
@@ -106,7 +106,7 @@ public class CurrentOrdersPane extends JSplitPane {
     /**
      * Converts current orders to an orderJList(JList).
      */
-    private void updateOrderJList() {
+    protected void updateOrderJList() {
         List<Group> orders = OrderUtil.getCurrentOrders().getList();
         Order[] arr = new Order[orders.size()];
 

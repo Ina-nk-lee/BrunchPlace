@@ -64,7 +64,7 @@ public class ButtonHandler {
      */
     protected void openCurrOrders() {
         gui.mainPane.openCurrentOrderPane();
-        gui.mainPane.currOrdersPane.showCurrOrders();
+        gui.mainPane.currOrdersPane.showOrders();
     }
 
     /**
@@ -72,7 +72,15 @@ public class ButtonHandler {
      */
     protected void openPay() {
         gui.mainPane.openPayPane();
-        gui.mainPane.payPane.showCurrOrders();
+        gui.mainPane.payPane.showOrders();
+    }
+
+    /**
+     * Shows current orders to process payments.
+     */
+    protected void openOrderHistory() {
+        gui.mainPane.openOrderHistoryPane();
+        gui.mainPane.orderHistoryPane.showOrders();
     }
 
     /**
@@ -132,6 +140,8 @@ public class ButtonHandler {
 
     protected void checkPayment(Order order) {
         OrderUtil.payOrder(order);
+        JOptionPane.showMessageDialog(new JFrame(), "Order Paid.");
+        openMainMenu();
         System.out.println(OrderUtil.getOrderRecords().toString());
     }
 }
