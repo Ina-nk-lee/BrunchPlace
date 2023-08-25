@@ -63,6 +63,10 @@ public class Item {
      * @return a string that contains the item's name and price.
      */
     public String toString() {
-        return this.getName() + "\n\t$" + this.getPrice();
+        return this.getName() + "\t$" + this.getPrice();
+    }
+
+    public String toHTML() {
+        return this.getName() + "<div style=\"text-align: right;\">$" + this.getPrice() + "</div>";
     }
 }

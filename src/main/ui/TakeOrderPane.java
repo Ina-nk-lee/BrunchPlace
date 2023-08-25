@@ -19,6 +19,7 @@ public class TakeOrderPane extends JSplitPane {
     private JTabbedPane tabPanel;
     private JScrollPane cartPane;
     private JPanel buttonPane;
+    private JTextPane cart;
     private ButtonHandler buttonHandler;
     private List<ItemButton> itemButtons;
     private final int DIVIDER_LOC = 480;
@@ -111,13 +112,16 @@ public class TakeOrderPane extends JSplitPane {
         rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 
-        cartPane = new JScrollPane();
-        JTextArea cart = new JTextArea("The cart is empty.");
+        cart = new JTextPane();
         cart.setEditable(false);
+        cart.setContentType("text/html");
+        cart.setText("The cart is empty.");
+
+        cartPane = new JScrollPane();
         cartPane.setViewportView(cart);
         cartPane.setPreferredSize(new Dimension(500, 350));
         cartPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        cartPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        cartPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         buttonPane = new JPanel();
         buttonPane.setLayout(new GridLayout(2, 1));
@@ -138,8 +142,7 @@ public class TakeOrderPane extends JSplitPane {
      * Updates a cart pane to show items currently in the cart.
      */
     public void updateCart() {
-        JTextArea cart;
-        cart = (JTextArea) cartPane.getViewport().getView();
+        JTextPane cart = (JTextPane) cartPane.getViewport().getView();
 
         if(!OrderUtil.isEmpty()) {
             cart.setText(OrderUtil.getCart().toString());

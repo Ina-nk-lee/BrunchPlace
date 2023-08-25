@@ -115,7 +115,7 @@ public class CurrentOrdersPane extends JSplitPane {
             Order order = (Order) value;
             // &lt; is "<", and &nbsp; is a tab in HTML.
 //            String labelText = "<html> &lt;" + order.getDate().toString() + "><br>" +
-//                    "Table No: &nbsp;&nbsp;" + order.getTable() + "<br>" +
+//                    "Table No: &nbsp; &nbsp;" + order.getTable() + "<br>" +
 //                    "------------------" + "<br>";
             String labelText = order.toString();
             setText(labelText);

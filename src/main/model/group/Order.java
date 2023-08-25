@@ -193,24 +193,23 @@ public class Order extends Group {
 
         StringBuilder result = new StringBuilder();
         // &lt; is "<", and &nbsp; is a tab in HTML.
-        result.append("<html> &lt;").append(date).append(">/br")
-                .append("\nTable No: ").append(table).append("/br")
-                .append("------------------\n");
+        result.append("<html> &lt;").append(date).append("><br>")
+                .append("Table No: ").append(table).append("<br>")
+                .append("----------------------------<br>");
 
         //  toString each item with a quantity
         for (Map.Entry<Item, Integer> entry : orderList.entrySet()) {
             Item item = entry.getKey();
             int quantity = entry.getValue();
-            result.append(item.toString())
-                    .append("\n\tx ").append(quantity).append("\n");
+            result.append(item.toHTML())
+                    .append("<div style=\"text-align: right;\">x").append(quantity).append("</div>");
         }
 
         //  shows the total quantity of the items and the total price.
-        result.append("------------------\n")
-                .append("Items:").append("\t").append(numItems).append("\n")
-                .append("Subtotal:").append("\t$").append(getTotal()).append("\n")
-                .append("GST + PST:").append("\t$  ").append(getTax()).append("\n")
-                .append("Total: ").append("\t$").append(getTotal() + getTax()).append("\n");
+        result.append("----------------------------<br>")
+                .append("Subtotal:").append("<div style=\"text-align: right;\">$").append(getTotal()).append("</div>")
+                .append("GST + PST:").append("<div style=\"text-align: right;\">$").append(getTax()).append("</div>")
+                .append("Total: ").append("<div style=\"text-align: right;\">$").append(getTotal() + getTax()).append("</div>");
 
         //  removes a new line at the end.
 //        if(result.length() > 0) {
