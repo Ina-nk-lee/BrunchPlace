@@ -126,7 +126,7 @@ public class OrderPane extends JSplitPane {
     /**
      * This class is a JList cell renderer for a customized formatted JList to show current orders.
      */
-    private class jListCellRenderer extends DefaultListCellRenderer {
+    private static class jListCellRenderer extends DefaultListCellRenderer {
         @Override
         public Component getListCellRendererComponent(
                 JList list, Object value, int index,

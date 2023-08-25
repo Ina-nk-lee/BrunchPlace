@@ -3,6 +3,9 @@ package main.ui;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class represents a pane for processing payments.
+ */
 public class PayPane extends OrderPane {
 
     /**

@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * This class represents a pane that displays the order history.
+ */
 public class OrderHistoryPane extends OrderPane {
     private Order selected;
 
