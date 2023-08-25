@@ -18,7 +18,7 @@ public class CurrentOrdersPane extends JSplitPane {
     protected JScrollPane orderPane;
     protected JPanel buttonPane;
     private JTextArea emptyCartText;
-    private JList<Order> orderJList;
+    protected JList<Order> orderJList;
 
     /**
      * Creates a current orders pane.
@@ -81,12 +81,12 @@ public class CurrentOrdersPane extends JSplitPane {
     /**
      * Sets up an orderJList that lists current orders.
      */
-    private void setOrderJList() {
+    protected void setOrderJList() {
         orderJList = new JList<>();
         orderJList.setCellRenderer(new jListCellRenderer());
         orderJList.setLayoutOrientation(JList.VERTICAL);
         orderJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        orderJList.addListSelectionListener(e -> buttonHandler.checkPayment(orderJList.getSelectedValue()));
+
     }
 
     /**
@@ -97,6 +97,7 @@ public class CurrentOrdersPane extends JSplitPane {
             emptyCartText.setText("There is no current order.");
             orderPane.setViewportView(emptyCartText);
         } else {
+            orderJList.clearSelection();
             updateOrderJList();
             orderPane.setViewportView(orderJList);
         }

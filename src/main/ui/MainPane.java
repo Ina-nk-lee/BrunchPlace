@@ -21,6 +21,7 @@ public class MainPane extends JSplitPane {
     private JButton takeOrder;
     private JButton currentOrders;
     private JButton pay;
+    private JButton orderHistory;
     private final int DIVIDER_LOC = 485;
     private final Color borderColor;
 
@@ -46,8 +47,7 @@ public class MainPane extends JSplitPane {
      * The top pane includes menu options, and the bottom pane includes a clock.
      */
     private void setPanes() {
-        GridLayout layout = new GridLayout(3,0);
-        layout.setVgap(5);
+        GridLayout layout = new GridLayout(2,2);
 
         topPanel = new JPanel();
         topPanel.setLayout(layout);
@@ -56,6 +56,7 @@ public class MainPane extends JSplitPane {
         topPanel.add(takeOrder);
         topPanel.add(currentOrders);
         topPanel.add(pay);
+        topPanel.add(orderHistory);
 
         takeOrderPane = new TakeOrderPane(buttonHandler);
         currOrdersPane = new CurrentOrdersPane(buttonHandler);
@@ -78,6 +79,7 @@ public class MainPane extends JSplitPane {
         takeOrder = new JButton("Take Order");
         currentOrders = new JButton("Current Orders");
         pay = new JButton("Pay");
+        orderHistory = new JButton("Order History");
 
         takeOrder.addActionListener(e -> buttonHandler.openTakeOrder());
         currentOrders.addActionListener(e -> buttonHandler.openCurrOrders());

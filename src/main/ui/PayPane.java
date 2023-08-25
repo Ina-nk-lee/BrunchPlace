@@ -1,9 +1,12 @@
 package main.ui;
 
+import main.model.group.Order;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class PayPane extends CurrentOrdersPane{
+    protected Order selected;
 
     /**
      * Creates a pay pane.
@@ -11,6 +14,7 @@ public class PayPane extends CurrentOrdersPane{
      */
     public PayPane(ButtonHandler buttonHandler) {
         super(buttonHandler);
+        setOrderJListListener();
     }
 
     /**
@@ -27,15 +31,23 @@ public class PayPane extends CurrentOrdersPane{
         JPanel buttonSpace = new JPanel();
         buttonSpace.setLayout(new GridLayout(2, 1));
 
+        JButton payButton = new JButton("Pay");
+        payButton.addActionListener(e -> {
+            if(selected != null) {
+                buttonHandler.checkPayment(selected);
+            }
+        });
+        buttonSpace.add(payButton);
+
         JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> buttonHandler.openMainMenu());
         buttonSpace.add(backButton);
 
-        JButton payButton = new JButton("Pay");
-        backButton.addActionListener(e -> buttonHandler.openMainMenu());
-        buttonSpace.add(payButton);
-
         super.buttonPane.add(emptySpace);
         super.buttonPane.add(buttonSpace);
+    }
+
+    private void setOrderJListListener() {
+        super.orderJList.addListSelectionListener(e -> selected = super.orderJList.getSelectedValue());
     }
 }
