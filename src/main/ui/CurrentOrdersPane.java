@@ -5,6 +5,7 @@ import main.model.group.Order;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.util.List;
 
@@ -78,6 +79,16 @@ public class CurrentOrdersPane extends JSplitPane {
     }
 
     /**
+     * Sets up an orderJList that lists current orders.
+     */
+    private void setOrderJList() {
+        orderJList = new JList<>();
+        orderJList.setCellRenderer(new jListCellRenderer());
+        orderJList.setLayoutOrientation(JList.VERTICAL);
+        orderJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+
+    /**
      * Shows current unpaid orders to an order pane.
      */
     protected void showCurrOrders() {
@@ -88,17 +99,6 @@ public class CurrentOrdersPane extends JSplitPane {
             updateOrderJList();
             orderPane.setViewportView(orderJList);
         }
-    }
-
-    /**
-     * Sets up an orderJList that lists current orders..
-     */
-    private void setOrderJList() {
-        orderJList = new JList<>();
-        orderJList.setCellRenderer(new jListCellRenderer());
-        orderJList.setLayoutOrientation(JList.VERTICAL);
-        orderJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        showCurrOrders();
     }
 
     /**
@@ -128,6 +128,9 @@ public class CurrentOrdersPane extends JSplitPane {
             Order order = (Order) value;
             String labelText = order.toString();
             setText(labelText);
+
+            JLabel listCellRendererComponent = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected,cellHasFocus);
+            listCellRendererComponent.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 
             return this;
         }
