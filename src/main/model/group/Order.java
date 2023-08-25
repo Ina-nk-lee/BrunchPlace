@@ -184,7 +184,7 @@ public class Order extends Group {
     }
 
     /**
-     * Converts the order to string.
+     * Converts the order to an HTML-format string.
      * @return the string conversion of the order.
      */
     public String toString() {

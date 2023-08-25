@@ -13,10 +13,10 @@ import java.util.List;
  * This class represents a pane that shows current unpaid orders.
  */
 public class CurrentOrdersPane extends JSplitPane {
-    private ButtonHandler buttonHandler;
-    private final int DIVIDER_LOC = 480;
-    private JScrollPane orderPane;
-    private JPanel buttonPane;
+    protected ButtonHandler buttonHandler;
+    protected final int DIVIDER_LOC = 480;
+    protected JScrollPane orderPane;
+    protected JPanel buttonPane;
     private JTextArea emptyCartText;
     private JList<Order> orderJList;
 
@@ -32,7 +32,7 @@ public class CurrentOrdersPane extends JSplitPane {
     /**
      * Sets up this pane to be horizontally split into two panes: a record pane and a pane with a button.
      */
-    private void setPanes() {
+    protected void setPanes() {
         setOrderPane();
         setButtonPane();
 
@@ -46,7 +46,7 @@ public class CurrentOrdersPane extends JSplitPane {
     /**
      * Sets up a scrollable order pane that shows current unpaid orders.
      */
-    private void setOrderPane() {
+    protected void setOrderPane() {
         orderPane = new JScrollPane();
         emptyCartText = new JTextArea();
 
@@ -61,12 +61,12 @@ public class CurrentOrdersPane extends JSplitPane {
     /**
      * Sets up a button pane that has a back button.
      */
-    private void setButtonPane() {
+    protected void setButtonPane() {
         buttonPane = new JPanel();
         buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.Y_AXIS));
 
         JPanel emptySpace = new JPanel();
-        emptySpace.setPreferredSize(new Dimension(500, 400));
+        emptySpace.setPreferredSize(new Dimension(500, 380));
 
         JPanel buttonSpace = new JPanel();
         buttonSpace.setLayout(new GridLayout());
@@ -86,6 +86,7 @@ public class CurrentOrdersPane extends JSplitPane {
         orderJList.setCellRenderer(new jListCellRenderer());
         orderJList.setLayoutOrientation(JList.VERTICAL);
         orderJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        orderJList.addListSelectionListener(e -> buttonHandler.checkPayment(orderJList.getSelectedValue()));
     }
 
     /**

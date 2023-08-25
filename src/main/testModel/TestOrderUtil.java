@@ -1,6 +1,7 @@
 package main.testModel;
 
 import main.model.group.Menu;
+import main.model.group.Order;
 import main.model.single.Item;
 import main.model.util.OrderUtil;
 import org.junit.jupiter.api.BeforeEach;
@@ -70,7 +71,7 @@ public class TestOrderUtil {
     void testPayOrder() {
         OrderUtil.addCartItem("a", 1);
         OrderUtil.makeOrder();
-        OrderUtil.payOrder(1);
+        OrderUtil.payOrder((Order) OrderUtil.getCurrentOrders().getList().get(0));
 
         assertEquals(0, OrderUtil.getCurrentOrders().numOrders());
         assertEquals(1, OrderUtil.getOrderRecords().numOrders());

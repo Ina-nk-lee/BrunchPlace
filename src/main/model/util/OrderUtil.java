@@ -1,5 +1,6 @@
 package main.model.util;
 
+import main.model.group.Group;
 import main.model.group.Menu;
 import main.model.group.Order;
 import main.model.group.OrderRecords;
@@ -90,13 +91,22 @@ public class OrderUtil {
      * Pays one of the orders that are made.
      * Picks an order according to the user input.
      */
-    public static void payOrder(int i) {
-        int index = i - 1;
-        Order picked = (Order) currentOrders.getList().get(index);
-        picked.setPaid();
-        sales += picked.getTotal();
-        orderRecords.addOrder(picked);
-        currentOrders.removeOrder(picked);
+    public static void payOrder(Order order) {
+        if(currentOrders.getList().contains(order)) {
+            Order target = null;
+
+            for(Group i : currentOrders.getList()) {
+                Order curr = (Order) i;
+                if(order.equals(curr)) {
+                    target = curr;
+                    target.setPaid();
+                    sales += target.getTotal();
+                    orderRecords.addOrder(target);
+                    currentOrders.removeOrder(target);
+                    return;
+                }
+            }
+        }
     }
 
     /**

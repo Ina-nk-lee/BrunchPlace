@@ -1,6 +1,7 @@
 package main.ui;
 
 import main.model.group.Menu;
+import main.model.group.Order;
 import main.model.single.Item;
 import main.model.util.MenuUtil;
 import main.model.util.OrderUtil;
@@ -37,7 +38,7 @@ public class ButtonHandler {
      * Takes an order from the user.
      * Gives two options -- take-out or dine-in -- and takes an order based on the user input.
      */
-    protected void takeOrder() {
+    protected void openTakeOrder() {
         //  Shows two options: take-out and dine-in.
         Object[] options = {"Take out", "Dine-in"};
         int option = JOptionPane.showOptionDialog(new JFrame(),
@@ -61,9 +62,17 @@ public class ButtonHandler {
     /**
      * Shows current orders.
      */
-    protected void showCurrOrders() {
+    protected void openCurrOrders() {
         gui.mainPane.openCurrentOrderPane();
         gui.mainPane.currOrdersPane.showCurrOrders();
+    }
+
+    /**
+     * Shows current orders to process payments.
+     */
+    protected void openPay() {
+        gui.mainPane.openPayPane();
+        gui.mainPane.payPane.showCurrOrders();
     }
 
     /**
@@ -119,5 +128,10 @@ public class ButtonHandler {
         OrderUtil.makeOrder();
         JOptionPane.showMessageDialog(new JFrame(), "Order Completed.");
         openMainMenu();
+    }
+
+    protected void checkPayment(Order order) {
+        OrderUtil.payOrder(order);
+        System.out.println(OrderUtil.getOrderRecords().toString());
     }
 }

@@ -16,6 +16,7 @@ public class MainPane extends JSplitPane {
     private JPanel bottomPanel;
     protected TakeOrderPane takeOrderPane;
     protected CurrentOrdersPane currOrdersPane;
+    protected PayPane payPane;
     private JLabel clock;
     private JButton takeOrder;
     private JButton currentOrders;
@@ -58,6 +59,7 @@ public class MainPane extends JSplitPane {
 
         takeOrderPane = new TakeOrderPane(buttonHandler);
         currOrdersPane = new CurrentOrdersPane(buttonHandler);
+        payPane = new PayPane(buttonHandler);
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -77,8 +79,9 @@ public class MainPane extends JSplitPane {
         currentOrders = new JButton("Current Orders");
         pay = new JButton("Pay");
 
-        takeOrder.addActionListener(e -> buttonHandler.takeOrder());
-        currentOrders.addActionListener(e -> buttonHandler.showCurrOrders());
+        takeOrder.addActionListener(e -> buttonHandler.openTakeOrder());
+        currentOrders.addActionListener(e -> buttonHandler.openCurrOrders());
+        pay.addActionListener(e -> buttonHandler.openPay());
     }
 
     /**
@@ -104,6 +107,15 @@ public class MainPane extends JSplitPane {
     protected void openCurrentOrderPane() {
         setupBorder(currOrdersPane);
         setTopComponent(currOrdersPane);
+        setDivider();
+    }
+
+    /**
+     * Opens a current orders pane on the main panel.
+     */
+    protected void openPayPane() {
+        setupBorder(payPane);
+        setTopComponent(payPane);
         setDivider();
     }
 
