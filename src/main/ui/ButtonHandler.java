@@ -63,7 +63,7 @@ public class ButtonHandler {
      */
     protected void showCurrOrders() {
         gui.mainPane.openCurrentOrderPane();
-        gui.mainPane.currOrdersPane.displayCurrOrders();
+        gui.mainPane.currOrdersPane.showCurrOrders();
     }
 
     /**

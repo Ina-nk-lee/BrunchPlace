@@ -29,7 +29,7 @@ public class CurrentOrdersPane extends JSplitPane {
     }
 
     /**
-     * Sets this pane to be horizontally split into two panes: a record pane and a pane with a button.
+     * Sets up this pane to be horizontally split into two panes: a record pane and a pane with a button.
      */
     private void setPanes() {
         setOrderPane();
@@ -43,17 +43,14 @@ public class CurrentOrdersPane extends JSplitPane {
     }
 
     /**
-     * Sets a scrollable order pane that shows current unpaid orders.
+     * Sets up a scrollable order pane that shows current unpaid orders.
      */
     private void setOrderPane() {
         orderPane = new JScrollPane();
         emptyCartText = new JTextArea();
 
-        orderJList = new JList<>();
-        orderJList.setCellRenderer(new jListCellRenderer());
-        orderJList.setLayoutOrientation(JList.VERTICAL);
-        orderJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        displayCurrOrders();
+        setOrderJList();
+        showCurrOrders();
 
         orderPane.setPreferredSize(new Dimension(500, 350));
         orderPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -61,7 +58,7 @@ public class CurrentOrdersPane extends JSplitPane {
     }
 
     /**
-     * Sets a button pane that has a back button.
+     * Sets up a button pane that has a back button.
      */
     private void setButtonPane() {
         buttonPane = new JPanel();
@@ -81,9 +78,9 @@ public class CurrentOrdersPane extends JSplitPane {
     }
 
     /**
-     * display current unpaid orders to an order pane.
+     * Shows current unpaid orders to an order pane.
      */
-    protected void displayCurrOrders() {
+    protected void showCurrOrders() {
         if(OrderUtil.getCurrentOrders().numOrders() == 0) {
             emptyCartText.setText("There is no current order.");
             orderPane.setViewportView(emptyCartText);
@@ -94,7 +91,18 @@ public class CurrentOrdersPane extends JSplitPane {
     }
 
     /**
-     * Converts current orders to jOrderList(JList).
+     * Sets up an orderJList that lists current orders..
+     */
+    private void setOrderJList() {
+        orderJList = new JList<>();
+        orderJList.setCellRenderer(new jListCellRenderer());
+        orderJList.setLayoutOrientation(JList.VERTICAL);
+        orderJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        showCurrOrders();
+    }
+
+    /**
+     * Converts current orders to an orderJList(JList).
      */
     private void updateOrderJList() {
         List<Group> orders = OrderUtil.getCurrentOrders().getList();
