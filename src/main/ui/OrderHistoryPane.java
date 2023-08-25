@@ -29,22 +29,22 @@ public class OrderHistoryPane extends OrderPane {
         super.buttonPane.setLayout(new BoxLayout(super.buttonPane, BoxLayout.Y_AXIS));
 
         JPanel emptySpace = new JPanel();
-        emptySpace.setPreferredSize(new Dimension(500, 310));
+        emptySpace.setPreferredSize(new Dimension(500, 340));
 
         JPanel buttonSpace = new JPanel();
         buttonSpace.setLayout(new GridLayout(2, 1));
 
-        JButton payButton = new JButton("Remove");
-        payButton.addActionListener(e -> {
-            if(selected != null) {
-                buttonHandler.checkPayment(selected);
-            }
-        });
-        buttonSpace.add(payButton);
-
         JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> buttonHandler.openMainMenu());
         buttonSpace.add(backButton);
+
+        JButton payButton = new JButton("Remove");
+        payButton.addActionListener(e -> {
+            if(selected != null) {
+                buttonHandler.confirmPayment(selected);
+            }
+        });
+        buttonSpace.add(payButton);
 
         super.buttonPane.add(emptySpace);
         super.buttonPane.add(buttonSpace);

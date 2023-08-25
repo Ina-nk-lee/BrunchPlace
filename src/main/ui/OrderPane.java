@@ -66,7 +66,7 @@ public class OrderPane extends JSplitPane {
         buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.Y_AXIS));
 
         JPanel emptySpace = new JPanel();
-        emptySpace.setPreferredSize(new Dimension(500, 380));
+        emptySpace.setPreferredSize(new Dimension(500, 400));
 
         JPanel buttonSpace = new JPanel();
         buttonSpace.setLayout(new GridLayout());
@@ -114,6 +114,13 @@ public class OrderPane extends JSplitPane {
         }
 
         orderJList.setListData(arr);
+    }
+
+    /**
+     * Clears the selection in the order JList.
+     */
+    protected void clearSelection() {
+        orderJList.clearSelection();
     }
 
     /**

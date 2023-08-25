@@ -1,12 +1,9 @@
 package main.ui;
 
-import main.model.group.Order;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class PayPane extends OrderPane {
-    protected Order selected;
 
     /**
      * Creates a pay pane.
@@ -14,7 +11,6 @@ public class PayPane extends OrderPane {
      */
     public PayPane(ButtonHandler buttonHandler) {
         super(buttonHandler);
-        setOrderJListListener();
     }
 
     /**
@@ -26,31 +22,24 @@ public class PayPane extends OrderPane {
         super.buttonPane.setLayout(new BoxLayout(super.buttonPane, BoxLayout.Y_AXIS));
 
         JPanel emptySpace = new JPanel();
-        emptySpace.setPreferredSize(new Dimension(500, 310));
+        emptySpace.setPreferredSize(new Dimension(500, 340));
 
         JPanel buttonSpace = new JPanel();
         buttonSpace.setLayout(new GridLayout(2, 1));
-
-        JButton payButton = new JButton("Pay");
-        payButton.addActionListener(e -> {
-            if(selected != null) {
-                buttonHandler.checkPayment(selected);
-            }
-        });
-        buttonSpace.add(payButton);
 
         JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> buttonHandler.openMainMenu());
         buttonSpace.add(backButton);
 
+        JButton payButton = new JButton("Pay");
+        payButton.addActionListener(e -> {
+            if(!orderJList.isSelectionEmpty()) {
+                buttonHandler.confirmPayment(super.orderJList.getSelectedValue());
+            }
+        });
+        buttonSpace.add(payButton);
+
         super.buttonPane.add(emptySpace);
         super.buttonPane.add(buttonSpace);
-    }
-
-    /**
-     * Sets up a selection listener for the order JList.
-     */
-    private void setOrderJListListener() {
-        super.orderJList.addListSelectionListener(e -> selected = super.orderJList.getSelectedValue());
     }
 }

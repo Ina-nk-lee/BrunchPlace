@@ -139,9 +139,16 @@ public class ButtonHandler {
         openMainMenu();
     }
 
-    protected void checkPayment(Order order) {
-        JFrame dialog = new JFrame();
-        dialog.setLayout(new GridLayout(2, 1));
+    /**
+     * Confirms the payment with a dialog before processing it.
+     * @param order to be paid.
+     */
+    protected void confirmPayment(Order order) {
+        JPanel pane = new JPanel();
+        pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+
+        JLabel question = new JLabel("Process Payment?");
+        question.setPreferredSize(new Dimension(130, 50));
 
         JScrollPane orderPane = new JScrollPane();
         JTextPane orderLog = new JTextPane();
@@ -149,15 +156,22 @@ public class ButtonHandler {
         orderLog.setText(order.toString());
 
         orderPane.setViewportView(orderLog);
-        orderPane.setPreferredSize(new Dimension(200, 400));
+        orderPane.setPreferredSize(new Dimension(130, 350));
         orderPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         orderPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        int choice = JOptionPane.showConfirmDialog(new JFrame(), orderPane, "Process Payment?", JOptionPane.YES_NO_OPTION);
+        pane.add(question);
+        pane.add(orderPane);
+
+        int choice = JOptionPane.showConfirmDialog(new JFrame(), pane, "Pay Confirmation", JOptionPane.YES_NO_OPTION);
+
         if(choice == JOptionPane.YES_OPTION) {
             OrderUtil.payOrder(order);
             JOptionPane.showMessageDialog(new JFrame(), "Payment Completed.");
+            gui.mainPane.payPane.clearSelection();
             openMainMenu();
+        } else {
+            gui.mainPane.payPane.clearSelection();
         }
     }
 }

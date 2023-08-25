@@ -1,8 +1,5 @@
 package main.testModel;
 
-import main.model.single.App;
-import main.model.single.Drink;
-import main.model.single.Entree;
 import main.model.single.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,16 +8,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestSingle {
     Item testItem;
-    Entree testEntree;
-    App testApp;
-    Drink testDrink;
+    Item testEntree;
+    Item testApp;
+    Item testDrink;
 
     @BeforeEach
     void runBefore() {
         testItem = new Item("TestItem", 3.5);
-        testEntree = new Entree("TestEntree", 12.93);
-        testApp = new App("TestApp", 8.54);
-        testDrink = new Drink("TestDrink", 2.0);
+        testEntree = new Item("TestEntree", 12.93);
+        testApp = new Item("TestApp", 8.54);
+        testDrink = new Item("TestDrink", 2.0);
     }
 
     @Test
