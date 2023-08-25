@@ -15,7 +15,7 @@ public class MainPane extends JSplitPane {
     private JPanel topPanel;
     private JPanel bottomPanel;
     protected TakeOrderPane takeOrderPane;
-    protected CurrentOrdersPane currOrdersPane;
+    protected OrderPane currOrdersPane;
     protected PayPane payPane;
     protected OrderHistoryPane orderHistoryPane;
     private JLabel clock;
@@ -58,7 +58,7 @@ public class MainPane extends JSplitPane {
         topPanel.add(orderHistory);
 
         takeOrderPane = new TakeOrderPane(buttonHandler);
-        currOrdersPane = new CurrentOrdersPane(buttonHandler);
+        currOrdersPane = new OrderPane(buttonHandler);
         payPane = new PayPane(buttonHandler);
         orderHistoryPane = new OrderHistoryPane(buttonHandler);
 

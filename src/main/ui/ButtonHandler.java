@@ -7,6 +7,7 @@ import main.model.util.MenuUtil;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -139,9 +140,24 @@ public class ButtonHandler {
     }
 
     protected void checkPayment(Order order) {
-        OrderUtil.payOrder(order);
-        JOptionPane.showMessageDialog(new JFrame(), "Order Paid.");
-        openMainMenu();
-        System.out.println(OrderUtil.getOrderRecords().toString());
+        JFrame dialog = new JFrame();
+        dialog.setLayout(new GridLayout(2, 1));
+
+        JScrollPane orderPane = new JScrollPane();
+        JTextPane orderLog = new JTextPane();
+        orderLog.setContentType("text/html");
+        orderLog.setText(order.toString());
+
+        orderPane.setViewportView(orderLog);
+        orderPane.setPreferredSize(new Dimension(200, 400));
+        orderPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        orderPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        int choice = JOptionPane.showConfirmDialog(new JFrame(), orderPane, "Process Payment?", JOptionPane.YES_NO_OPTION);
+        if(choice == JOptionPane.YES_OPTION) {
+            OrderUtil.payOrder(order);
+            JOptionPane.showMessageDialog(new JFrame(), "Payment Completed.");
+            openMainMenu();
+        }
     }
 }

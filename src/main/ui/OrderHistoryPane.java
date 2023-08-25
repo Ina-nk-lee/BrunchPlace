@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class OrderHistoryPane extends CurrentOrdersPane{
+public class OrderHistoryPane extends OrderPane {
     private Order selected;
 
     /**

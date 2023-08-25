@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * This class represents a pane that shows current unpaid orders.
  */
-public class CurrentOrdersPane extends JSplitPane {
+public class OrderPane extends JSplitPane {
     protected ButtonHandler buttonHandler;
     protected final int DIVIDER_LOC = 480;
     protected JScrollPane orderPane;
@@ -24,7 +24,7 @@ public class CurrentOrdersPane extends JSplitPane {
      * Creates a current orders pane.
      * @param buttonHandler to handle button click events.
      */
-    public CurrentOrdersPane(ButtonHandler buttonHandler) {
+    public OrderPane(ButtonHandler buttonHandler) {
         this.buttonHandler = buttonHandler;
         setPanes();
     }
@@ -86,7 +86,6 @@ public class CurrentOrdersPane extends JSplitPane {
         orderJList.setCellRenderer(new jListCellRenderer());
         orderJList.setLayoutOrientation(JList.VERTICAL);
         orderJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
     }
 
     /**
@@ -121,7 +120,6 @@ public class CurrentOrdersPane extends JSplitPane {
      * This class is a JList cell renderer for a customized formatted JList to show current orders.
      */
     private class jListCellRenderer extends DefaultListCellRenderer {
-
         @Override
         public Component getListCellRendererComponent(
                 JList list, Object value, int index,

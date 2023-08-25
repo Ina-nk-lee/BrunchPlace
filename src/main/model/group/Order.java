@@ -187,6 +187,7 @@ public class Order extends Group {
      * Converts the order to an HTML-format string.
      * @return the string conversion of the order.
      */
+    @Override
     public String toString() {
         //  Update OrderList with a quantity for each item
         this.updateOrderList();
@@ -195,7 +196,7 @@ public class Order extends Group {
         // &lt; is "<", and &nbsp; is a tab in HTML.
         result.append("<html> &lt;").append(date).append("><br>")
                 .append("Table No: ").append(table).append("<br>")
-                .append("----------------------------<br>");
+                .append("----------------------------------------<br>");
 
         //  toString each item with a quantity
         for (Map.Entry<Item, Integer> entry : orderList.entrySet()) {
@@ -206,7 +207,7 @@ public class Order extends Group {
         }
 
         //  shows the total quantity of the items and the total price.
-        result.append("----------------------------<br>")
+        result.append("----------------------------------------<br>")
                 .append("Subtotal:").append("<div style=\"text-align: right;\">$").append(getTotal()).append("</div>")
                 .append("GST + PST:").append("<div style=\"text-align: right;\">$").append(getTax()).append("</div>")
                 .append("Total: ").append("<div style=\"text-align: right;\">$").append(getTotal() + getTax()).append("</div>");

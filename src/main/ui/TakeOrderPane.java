@@ -121,7 +121,7 @@ public class TakeOrderPane extends JSplitPane {
         cartPane.setViewportView(cart);
         cartPane.setPreferredSize(new Dimension(500, 350));
         cartPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        cartPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        cartPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         buttonPane = new JPanel();
         buttonPane.setLayout(new GridLayout(2, 1));

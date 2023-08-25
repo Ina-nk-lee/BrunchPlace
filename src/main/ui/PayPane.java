@@ -5,7 +5,7 @@ import main.model.group.Order;
 import javax.swing.*;
 import java.awt.*;
 
-public class PayPane extends CurrentOrdersPane{
+public class PayPane extends OrderPane {
     protected Order selected;
 
     /**
