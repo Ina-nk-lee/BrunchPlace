@@ -42,17 +42,28 @@ public class ButtonHandler {
     protected void openTakeOrder() {
         //  Shows two options: take-out and dine-in.
         Object[] options = {"Take out", "Dine-in"};
-        int option = JOptionPane.showOptionDialog(new JFrame(),
+
+        int selected = JOptionPane.showOptionDialog(new JFrame(),
                 "Take out or Dine-in?",
                 "Question", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 
+
+        //  Default table no.
         int tableNo = 0;
 
-        if(option == 1) {
+        //  If Dine-in was selected
+        if(selected == JOptionPane.NO_OPTION) {
             tableNo = askNum("Enter a table number.", 0);
+
+            //  If the user input for the table number is null (cancel), go back to the main menu.
             if(tableNo == -1) {
                 return;
             }
+        }
+
+        //  If the dialog window was closed
+        if(selected == JOptionPane.CLOSED_OPTION) {
+            return;
         }
 
         //  Takes an order based on the table number.
