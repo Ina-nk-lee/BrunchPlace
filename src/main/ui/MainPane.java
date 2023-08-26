@@ -10,21 +10,17 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is a main panel of BrunchPlace.
- * The user can take an order, pay, and see a list of current orders.
+ * This class is a main menu pane of BrunchPlace.
+ * The user can take an order, check current orders, pay them, and check order history.
  */
 public class MainPane extends JSplitPane {
     private final ButtonHandler buttonHandler;
     private JPanel topPane;
     private JPanel bottomPane;
     protected TakeOrderPane takeOrderPane;
-    protected PayPane payPane;
+    protected CheckOrdersPane currentOrdersPane;
     protected HistoryPane historyPane;
     private JLabel clock;
-    private JButton takeOrder;
-    private JButton currentOrders;
-    private JButton orderHistory;
-    private List<Menu> menus;
     private final int DIVIDER_LOC = 485;
     private final Color borderColor;
 
@@ -35,11 +31,10 @@ public class MainPane extends JSplitPane {
      */
     public MainPane(List<Menu> menus, ButtonHandler buttonHandler) {
         this.buttonHandler = buttonHandler;
-        this.menus = menus;
         this.borderColor = new Color(173, 216, 230); // a sky-blue color border.
 
         takeOrderPane = new TakeOrderPane(menus, buttonHandler);
-        payPane = new PayPane(buttonHandler);
+        currentOrdersPane = new CheckOrdersPane(buttonHandler);
         historyPane = new HistoryPane(buttonHandler);
 
         clock = new JLabel();
@@ -58,19 +53,20 @@ public class MainPane extends JSplitPane {
         setBottomPane();
 
         setOrientation(JSplitPane.VERTICAL_SPLIT);
+        setDivider();
+        setEnabled(false);
+
         setTopComponent(topPane);
         setBottomComponent(bottomPane);
-        setEnabled(false);
-        openMainMenu();
     }
 
     /**
      * Sets up the top pane with menu option buttons.
      */
     private void setTopPane() {
-        takeOrder = new JButton("Take Order");
-        currentOrders = new JButton("Current Order / Payment");
-        orderHistory = new JButton("Order History");
+        JButton takeOrder = new JButton("Take Order");
+        JButton currentOrders = new JButton("Current Order / Payment");
+        JButton orderHistory = new JButton("Order History");
 
         takeOrder.addActionListener(e -> buttonHandler.openTakeOrder());
         currentOrders.addActionListener(e -> buttonHandler.openPay());
@@ -105,7 +101,7 @@ public class MainPane extends JSplitPane {
     /**
      * Opens a take order pane on the main panel.
      */
-    protected void openTakeOrderPanel() {
+    protected void openTakeOrder() {
         setupBorder(takeOrderPane);
         setTopComponent(takeOrderPane);
         setDivider();
@@ -114,16 +110,16 @@ public class MainPane extends JSplitPane {
     /**
      * Opens a current orders pane on the main panel.
      */
-    protected void openPayPane() {
-        setupBorder(payPane);
-        setTopComponent(payPane);
+    protected void openCurrentOrders() {
+        setupBorder(currentOrdersPane);
+        setTopComponent(currentOrdersPane);
         setDivider();
     }
 
     /**
      * Opens an order history pane on the main panel.
      */
-    protected void openOrderHistoryPane() {
+    protected void openOrderHistory() {
         setupBorder(historyPane);
         setTopComponent(historyPane);
         setDivider();

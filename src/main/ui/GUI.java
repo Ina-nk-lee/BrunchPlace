@@ -12,11 +12,7 @@ import java.util.List;
  * This class represents a GUI of BrunchPlace.
  */
 public class GUI extends JFrame {
-    private List<Menu> menus;
     protected MainPane mainPane;
-    private ButtonHandler buttonHandler;
-    private JLabel clock;
-    private Timer timer;
     public static final int WINDOW_WIDTH = 650;
     public static final int WINDOW_HEIGHT = 550;
 
@@ -25,10 +21,10 @@ public class GUI extends JFrame {
      */
     public GUI() {
         super("The Story Cafe");
-        this.menus = MenuUtil.getInstance().getMenus();
-        OrderUtil.initUtil(this.menus);
-        this.buttonHandler = new ButtonHandler(this);
-        mainPane = new MainPane(this.menus, buttonHandler);
+        List<Menu> menus = MenuUtil.getInstance().getMenus();
+        OrderUtil.initUtil(menus);
+        ButtonHandler buttonHandler = new ButtonHandler(this);
+        mainPane = new MainPane(menus, buttonHandler);
 
         add(mainPane);
         setWindowLoc();

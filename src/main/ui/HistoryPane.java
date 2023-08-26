@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * This class represents a pane that displays the order history.
  */
-public class HistoryPane extends OrderPane {
+public class HistoryPane extends CheckOrdersPane {
     private Order selected;
 
     /**

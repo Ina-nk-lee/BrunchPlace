@@ -13,12 +13,8 @@ import java.util.List;
  */
 public class TakeOrderPane extends JSplitPane {
     private List<Menu> menus;
-    private MenuTabsPane menuTabsPane;
     private JPanel rightPanel;
-    private JTabbedPane tabPanel;
     private JScrollPane cartPane;
-    private JPanel buttonPane;
-    private JTextPane cart;
     private ButtonHandler buttonHandler;
     private List<ItemButton> itemButtons;
     private final int DIVIDER_LOC = 480;
@@ -40,7 +36,7 @@ public class TakeOrderPane extends JSplitPane {
      * A menu panel goes to the top, and a list panel goes to the bottom.
      */
     private void setPanels() {
-        menuTabsPane = new MenuTabsPane(menus, buttonHandler);
+        MenuTabsPane menuTabsPane = new MenuTabsPane(menus, buttonHandler);
         setRightPane();
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
@@ -59,7 +55,7 @@ public class TakeOrderPane extends JSplitPane {
         rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 
-        cart = new JTextPane();
+        JTextPane cart = new JTextPane();
         cart.setEditable(false);
         cart.setContentType("text/html");
         cart.setText("The cart is empty.");
@@ -70,7 +66,7 @@ public class TakeOrderPane extends JSplitPane {
         cartPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         cartPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        buttonPane = new JPanel();
+        JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new GridLayout(2, 1));
 
         JButton backButton = new JButton("Back");

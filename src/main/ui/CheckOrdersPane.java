@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * This class represents a pane that shows current unpaid orders.
  */
-public class OrderPane extends JSplitPane {
+public class CheckOrdersPane extends JSplitPane {
     protected ButtonHandler buttonHandler;
     protected final int DIVIDER_LOC = 480;
     protected JScrollPane orderPane;
@@ -24,7 +24,7 @@ public class OrderPane extends JSplitPane {
      * Creates a current orders pane.
      * @param buttonHandler to handle button click events.
      */
-    public OrderPane(ButtonHandler buttonHandler) {
+    public CheckOrdersPane(ButtonHandler buttonHandler) {
         this.buttonHandler = buttonHandler;
         setPanes();
     }

@@ -57,22 +57,22 @@ public class ButtonHandler {
 
         //  Takes an order based on the table number.
         OrderUtil.newCart(tableNo);
-        gui.mainPane.openTakeOrderPanel();
+        gui.mainPane.openTakeOrder();
     }
 
     /**
      * Shows current orders to process payments.
      */
     protected void openPay() {
-        gui.mainPane.openPayPane();
-        gui.mainPane.payPane.showOrders();
+        gui.mainPane.openCurrentOrders();
+        gui.mainPane.currentOrdersPane.showOrders();
     }
 
     /**
      * Shows current orders to process payments.
      */
     protected void openOrderHistory() {
-        gui.mainPane.openOrderHistoryPane();
+        gui.mainPane.openOrderHistory();
         gui.mainPane.historyPane.showOrders();
     }
 
@@ -160,10 +160,10 @@ public class ButtonHandler {
         if(choice == JOptionPane.YES_OPTION) {
             OrderUtil.payOrder(order);
             JOptionPane.showMessageDialog(new JFrame(), "Payment Completed.");
-            gui.mainPane.payPane.clearSelection();
+            gui.mainPane.currentOrdersPane.clearSelection();
             openMainMenu();
         } else {
-            gui.mainPane.payPane.clearSelection();
+            gui.mainPane.currentOrdersPane.clearSelection();
         }
     }
 }
