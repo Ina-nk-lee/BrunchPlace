@@ -61,14 +61,6 @@ public class ButtonHandler {
     }
 
     /**
-     * Shows current orders.
-     */
-    protected void openCurrOrders() {
-        gui.mainPane.openCurrentOrderPane();
-        gui.mainPane.currOrdersPane.showOrders();
-    }
-
-    /**
      * Shows current orders to process payments.
      */
     protected void openPay() {

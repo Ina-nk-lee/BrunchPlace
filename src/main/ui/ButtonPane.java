@@ -26,7 +26,7 @@ public class ButtonPane extends JPanel {
      */
     private JPanel setTopPane() {
         JPanel emptySpace = new JPanel();
-        emptySpace.setPreferredSize(new Dimension(500, 400));
+        emptySpace.setPreferredSize(new Dimension(200, 400));
 
         return emptySpace;
     }

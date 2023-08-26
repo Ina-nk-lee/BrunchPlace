@@ -38,9 +38,10 @@ public class OrderPane extends JSplitPane {
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setDividerLocation(DIVIDER_LOC);
+        setEnabled(false);
+
         setLeftComponent(orderPane);
         setRightComponent(buttonPane);
-        setEnabled(false);
     }
 
     /**
@@ -59,26 +60,6 @@ public class OrderPane extends JSplitPane {
     }
 
     /**
-     * Sets up a button pane that has a back button.
-     */
-    protected void setButtonPane() {
-        buttonPane = new JPanel();
-        buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.Y_AXIS));
-
-        JPanel emptySpace = new JPanel();
-        emptySpace.setPreferredSize(new Dimension(500, 400));
-
-        JPanel buttonSpace = new JPanel();
-        buttonSpace.setLayout(new GridLayout());
-        JButton backButton = new JButton("Back");
-        backButton.addActionListener(e -> buttonHandler.openMainMenu());
-        buttonSpace.add(backButton);
-
-        this.buttonPane.add(emptySpace);
-        this.buttonPane.add(buttonSpace);
-    }
-
-    /**
      * Sets up an orderJList that lists current orders.
      */
     protected void setOrderJList() {
@@ -86,6 +67,35 @@ public class OrderPane extends JSplitPane {
         orderJList.setCellRenderer(new jListCellRenderer());
         orderJList.setLayoutOrientation(JList.VERTICAL);
         orderJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+
+    /**
+     * Sets up a button pane that has a back button.
+     */
+    protected void setButtonPane() {
+        buttonPane = new JPanel();
+        buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.Y_AXIS));
+
+        JPanel emptySpace = new JPanel();
+        emptySpace.setPreferredSize(new Dimension(500, 340));
+
+        JPanel buttonSpace = new JPanel();
+        buttonSpace.setLayout(new GridLayout(2, 1));
+
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> buttonHandler.openMainMenu());
+        buttonSpace.add(backButton);
+
+        JButton payButton = new JButton("Pay");
+        payButton.addActionListener(e -> {
+            if(!orderJList.isSelectionEmpty()) {
+                buttonHandler.confirmPayment(orderJList.getSelectedValue());
+            }
+        });
+        buttonSpace.add(payButton);
+
+        buttonPane.add(emptySpace);
+        buttonPane.add(buttonSpace);
     }
 
     /**
