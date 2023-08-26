@@ -11,14 +11,14 @@ import java.util.List;
 /**
  * This class represents a pane that displays the order history.
  */
-public class OrderHistoryPane extends OrderPane {
+public class HistoryPane extends OrderPane {
     private Order selected;
 
     /**
      * Creates an order history pane.
      * @param buttonHandler to handle button click events.
      */
-    public OrderHistoryPane(ButtonHandler buttonHandler) {
+    public HistoryPane(ButtonHandler buttonHandler) {
         super(buttonHandler);
         setOrderJListListener();
     }

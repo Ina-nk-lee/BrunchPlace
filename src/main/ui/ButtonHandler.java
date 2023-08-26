@@ -81,7 +81,7 @@ public class ButtonHandler {
      */
     protected void openOrderHistory() {
         gui.mainPane.openOrderHistoryPane();
-        gui.mainPane.orderHistoryPane.showOrders();
+        gui.mainPane.historyPane.showOrders();
     }
 
     /**

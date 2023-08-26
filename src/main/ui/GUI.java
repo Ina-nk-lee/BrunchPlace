@@ -26,9 +26,9 @@ public class GUI extends JFrame {
     public GUI() {
         super("The Story Cafe");
         this.menus = MenuUtil.getInstance().getMenus();
-        OrderUtil.initUtil(menus);
+        OrderUtil.initUtil(this.menus);
         this.buttonHandler = new ButtonHandler(this);
-        mainPane = new MainPane(buttonHandler);
+        mainPane = new MainPane(this.menus, buttonHandler);
 
         add(mainPane);
         setWindowLoc();

@@ -1,8 +1,6 @@
 package main.ui;
 
 import main.model.group.Menu;
-import main.model.single.Item;
-import main.model.util.MenuUtil;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
@@ -15,6 +13,7 @@ import java.util.List;
  */
 public class TakeOrderPane extends JSplitPane {
     private List<Menu> menus;
+    private MenuTabsPane menuTabsPane;
     private JPanel rightPanel;
     private JTabbedPane tabPanel;
     private JScrollPane cartPane;
@@ -28,8 +27,8 @@ public class TakeOrderPane extends JSplitPane {
      * Creates a panel for taking orders.
      * It takes order based on a menu from MenuGetter.java, which uses a singleton pattern.
      */
-    public TakeOrderPane(ButtonHandler buttonHandler) {
-        this.menus = MenuUtil.getInstance().getMenus();
+    public TakeOrderPane(List<Menu> menus, ButtonHandler buttonHandler) {
+        this.menus = menus;
         this.itemButtons = new ArrayList<>();
         this.buttonHandler = buttonHandler;
 
@@ -41,68 +40,69 @@ public class TakeOrderPane extends JSplitPane {
      * A menu panel goes to the top, and a list panel goes to the bottom.
      */
     private void setPanels() {
-        setTabs();
+        menuTabsPane = new MenuTabsPane(menus, buttonHandler);
         setRightPane();
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setDividerLocation(DIVIDER_LOC);
-        setLeftComponent(tabPanel);
-        setRightComponent(rightPanel);
         setEnabled(false);
+
+        setLeftComponent(menuTabsPane);
+        setRightComponent(rightPanel);
     }
 
-    /**
-     * Sets a tab for each menu.
-     */
-    private void setTabs() {
-        tabPanel = new JTabbedPane();
-        for(Menu menu : menus) {
-            tabPanel.addTab(menu.getName(), setMenuPane(menu));
-        }
-    }
-
-    /**
-     * Sets a menu pane, which goes into a tab panel.
-     * It shows all the menu items in the menu as buttons.
-     * An item panel that shows all the item buttons in a grid goes on top of a JScrollPane.
-     */
-    private JScrollPane setMenuPane(Menu menu) {
-        // preferred button height = 40
-        // preferred button width = 108
-
-        JPanel itemPanel = new JPanel();
-        itemPanel.setLayout(new GridBagLayout());
-
-        int x = 0;
-        int y = 0;
-
-        for(Item item : menu) {
-            GridBagConstraints constraints = new GridBagConstraints();
-
-            //  Place three items in a row.
-            if(x % 3 == 0) {
-                x = 0;
-                y++;
-            }
-
-            constraints.gridx = x;
-            constraints.gridy = y;
-            constraints.weightx = 1;
-            constraints.fill = GridBagConstraints.HORIZONTAL;
-
-            ItemButton button = new ItemButton(item, buttonHandler);
-            itemButtons.add(button);
-            itemPanel.add(button, constraints);
-
-            x++;
-        }
-
-        JScrollPane menuPane = new JScrollPane(itemPanel);
-        menuPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        menuPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-        return menuPane;
-    }
+//    /**
+//     * Sets a tab for each menu.
+//     */
+//    private void setTabs() {
+//        tabPanel = new JTabbedPane();
+//        for(Menu menu : menus) {
+//            tabPanel.addTab(menu.getName(), setMenuPane(menu));
+//        }
+//    }
+//
+//    /**
+//     * Sets a menu pane, which goes into a tab panel.
+//     * It shows all the menu items in the menu as buttons.
+//     * An item panel that shows all the item buttons in a grid goes on top of a JScrollPane.
+//     */
+//    private JScrollPane setMenuPane(Menu menu) {
+//        // preferred button height = 40
+//        // preferred button width = 108
+//
+//        JPanel itemPanel = new JPanel();
+//        itemPanel.setLayout(new GridBagLayout());
+//
+//        int x = 0;
+//        int y = 0;
+//
+//        for(Item item : menu) {
+//            GridBagConstraints constraints = new GridBagConstraints();
+//
+//            //  Place three items in a row.
+//            if(x % 3 == 0) {
+//                x = 0;
+//                y++;
+//            }
+//
+//            constraints.gridx = x;
+//            constraints.gridy = y;
+//            constraints.weightx = 1;
+//            constraints.fill = GridBagConstraints.HORIZONTAL;
+//
+//            ItemButton button = new ItemButton(item, buttonHandler);
+//            itemButtons.add(button);
+//            itemPanel.add(button, constraints);
+//
+//            x++;
+//        }
+//
+//        JScrollPane menuPane = new JScrollPane(itemPanel);
+//        menuPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+//        menuPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//
+//        return menuPane;
+//    }
 
     /**
      * Sets a list panel, which shows all the items in the cart, and an order button.

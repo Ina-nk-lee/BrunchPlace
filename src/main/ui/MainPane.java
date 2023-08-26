@@ -1,10 +1,13 @@
 package main.ui;
 
+import main.model.group.Menu;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * This class is a main panel of BrunchPlace.
@@ -17,22 +20,24 @@ public class MainPane extends JSplitPane {
     protected TakeOrderPane takeOrderPane;
     protected OrderPane currOrdersPane;
     protected PayPane payPane;
-    protected OrderHistoryPane orderHistoryPane;
+    protected HistoryPane historyPane;
     private JLabel clock;
     private JButton takeOrder;
     private JButton currentOrders;
     private JButton pay;
     private JButton orderHistory;
+    private List<Menu> menus;
     private final int DIVIDER_LOC = 485;
     private final Color borderColor;
 
     /**
-     * Creates a main menu pane with options: take order, pay, and current orders.
+     * Creates a main menu pane with options: take order, current orders / pay, and order history.
      * It also includes a clock on the bottom.
      * @param buttonHandler is a handler for button click events.
      */
-    public MainPane(ButtonHandler buttonHandler) {
+    public MainPane(List<Menu> menus, ButtonHandler buttonHandler) {
         this.buttonHandler = buttonHandler;
+        this.menus = menus;
         this.borderColor = new Color(173, 216, 230); // sky-blue color
 
         clock = new JLabel();
@@ -57,10 +62,10 @@ public class MainPane extends JSplitPane {
         topPanel.add(pay);
         topPanel.add(orderHistory);
 
-        takeOrderPane = new TakeOrderPane(buttonHandler);
+        takeOrderPane = new TakeOrderPane(menus, buttonHandler);
         currOrdersPane = new OrderPane(buttonHandler);
         payPane = new PayPane(buttonHandler);
-        orderHistoryPane = new OrderHistoryPane(buttonHandler);
+        historyPane = new HistoryPane(buttonHandler);
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -126,8 +131,8 @@ public class MainPane extends JSplitPane {
      * Opens an order history pane on the main panel.
      */
     protected void openOrderHistoryPane() {
-        setupBorder(orderHistoryPane);
-        setTopComponent(orderHistoryPane);
+        setupBorder(historyPane);
+        setTopComponent(historyPane);
         setDivider();
     }
 
