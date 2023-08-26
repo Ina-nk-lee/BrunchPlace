@@ -8,9 +8,17 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * This class represents a JList to display orders and allow the user to select one of them.
+ */
 public class OrderJList extends JList<Order>{
     List<Group> orders;
 
+    /**
+     * Creates a JList for orders.
+     * Only a single order can be selected.
+     * @param orders to be converted into a JList.
+     */
     public OrderJList(List<Group> orders) {
         this.orders = orders;
 
