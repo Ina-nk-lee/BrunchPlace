@@ -1,18 +1,14 @@
 package main.ui;
 
-import main.model.group.Group;
-import main.model.group.Order;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 /**
  * This class represents a pane that displays the order history.
  */
 public class HistoryPane extends CheckOrdersPane {
-    private Order selected;
 
     /**
      * Creates an order history pane.
@@ -20,11 +16,11 @@ public class HistoryPane extends CheckOrdersPane {
      */
     public HistoryPane(ButtonHandler buttonHandler) {
         super(buttonHandler);
-        setOrderJListListener();
+        super.orderJList = new OrderJList(OrderUtil.getOrderRecords().getList());
     }
 
     /**
-     * Sets up a button pane that has a back button.
+     * Sets up a button pane that has a back button and a remove button.
      */
     @Override
     protected void setButtonPane() {
@@ -43,21 +39,14 @@ public class HistoryPane extends CheckOrdersPane {
 
         JButton payButton = new JButton("Remove");
         payButton.addActionListener(e -> {
-            if(selected != null) {
-                buttonHandler.confirmPayment(selected);
+            if(!orderJList.isSelectionEmpty()) {
+                // buttonHandler.confirmPayment(orderJList.getSelectedValue());
             }
         });
         buttonSpace.add(payButton);
 
         super.buttonPane.add(emptySpace);
         super.buttonPane.add(buttonSpace);
-    }
-
-    /**
-     * Sets up a selection listener for the order JList.
-     */
-    private void setOrderJListListener() {
-        super.orderJList.addListSelectionListener(e -> selected = super.orderJList.getSelectedValue());
     }
 
     /**
@@ -70,23 +59,10 @@ public class HistoryPane extends CheckOrdersPane {
             super.orderPane.setViewportView(super.emptyCartText);
         } else {
             super.orderJList.clearSelection();
-            updateOrderJList();
+            super.orderJList.updateOrderJList();
+            super.orderPane.setViewportView(super.orderJList);
+
             super.orderPane.setViewportView(super.orderJList);
         }
-    }
-
-    /**
-     * Converts order history to an orderJList(JList).
-     */
-    @Override
-    protected void updateOrderJList() {
-        List<Group> orders = OrderUtil.getOrderRecords().getList();
-        Order[] arr = new Order[orders.size()];
-
-        for (int i = 0; i < orders.size(); i++) {
-            arr[i] = (Order) orders.get(i);
-        }
-
-        orderJList.setListData(arr);
     }
 }

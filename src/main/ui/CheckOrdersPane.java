@@ -1,13 +1,9 @@
 package main.ui;
 
-import main.model.group.Group;
-import main.model.group.Order;
 import main.model.util.OrderUtil;
 
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
 import java.awt.*;
-import java.util.List;
 
 /**
  * This class represents a pane that shows current unpaid orders.
@@ -18,7 +14,7 @@ public class CheckOrdersPane extends JSplitPane {
     protected JScrollPane orderPane;
     protected JPanel buttonPane;
     protected JTextArea emptyCartText;
-    protected JList<Order> orderJList;
+    protected OrderJList orderJList;
 
     /**
      * Creates a current orders pane.
@@ -33,7 +29,7 @@ public class CheckOrdersPane extends JSplitPane {
      * Sets up this pane to be horizontally split into two panes: a record pane and a pane with a button.
      */
     protected void setPanes() {
-        setOrderPane();
+        setOrderDisplayPane();
         setButtonPane();
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
@@ -47,26 +43,17 @@ public class CheckOrdersPane extends JSplitPane {
     /**
      * Sets up a scrollable order pane that shows current unpaid orders.
      */
-    protected void setOrderPane() {
+    protected void setOrderDisplayPane() {
         orderPane = new JScrollPane();
-        emptyCartText = new JTextArea();
 
-        setOrderJList();
+        emptyCartText = new JTextArea();
+        orderJList = new OrderJList(OrderUtil.getCurrentOrders().getList());
+
         showOrders();
 
         orderPane.setPreferredSize(new Dimension(500, 350));
         orderPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         orderPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-    }
-
-    /**
-     * Sets up an orderJList that lists current orders.
-     */
-    protected void setOrderJList() {
-        orderJList = new JList<>();
-        orderJList.setCellRenderer(new jListCellRenderer());
-        orderJList.setLayoutOrientation(JList.VERTICAL);
-        orderJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     /**
@@ -102,28 +89,16 @@ public class CheckOrdersPane extends JSplitPane {
      * Shows unpaid orders to an order pane.
      */
     protected void showOrders() {
+        //  If there is no current order.
         if(OrderUtil.getCurrentOrders().numOrders() == 0) {
             emptyCartText.setText("There is no current order.");
             orderPane.setViewportView(emptyCartText);
         } else {
+            //  If there is any order.
             orderJList.clearSelection();
-            updateOrderJList();
+            orderJList.updateOrderJList();
             orderPane.setViewportView(orderJList);
         }
-    }
-
-    /**
-     * Converts current orders to an orderJList(JList).
-     */
-    protected void updateOrderJList() {
-        List<Group> orders = OrderUtil.getCurrentOrders().getList();
-        Order[] arr = new Order[orders.size()];
-
-        for (int i = 0; i < orders.size(); i++) {
-            arr[i] = (Order) orders.get(i);
-        }
-
-        orderJList.setListData(arr);
     }
 
     /**
@@ -131,26 +106,5 @@ public class CheckOrdersPane extends JSplitPane {
      */
     protected void clearSelection() {
         orderJList.clearSelection();
-    }
-
-    /**
-     * This class is a JList cell renderer for a customized formatted JList to show current orders.
-     */
-    private static class jListCellRenderer extends DefaultListCellRenderer {
-        @Override
-        public Component getListCellRendererComponent(
-                JList list, Object value, int index,
-                boolean isSelected, boolean cellHasFocus) {
-            super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            Order order = (Order) value;
-            String labelText = order.toString();
-            setText(labelText);
-
-            JLabel listCellRendererComponent = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected,cellHasFocus);
-            listCellRendererComponent.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-
-            return this;
-        }
-
     }
 }
